@@ -68,12 +68,12 @@ feed:
 safe: False
 lsi: False
 username: No3371
-repo: jasper2
+repo: blog
 branch: master
-relative_source: ../jasper2/
-destination: ../jasper2-pages/
+relative_source: ../blog/
+destination: ../blog-pages/
 production_url:  https://No3371.github.io/blog/
-source_url:  https://github.com/No3371/jasper2/
+source_url:  https://github.com/No3371/blog/
 
 exclude:
   - assets/css

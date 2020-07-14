@@ -5,3 +5,4 @@ gem "github-pages", "~> 192"
 gem "rake", "~> 12.3.1"
 gem "slugify", "~> 1.0"
 gem 'jemoji'
+gem "jekyll-polyglot"

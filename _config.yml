@@ -42,7 +42,7 @@ permalink: /:title
 
 # gems and other configs
 plugins_dir: [_plugins]
-plugins: [jekyll-paginate, jekyll-feed, jemoji]
+plugins: [jekyll-paginate, jekyll-feed, jemoji, jekyll-polyglot]
 
 feed:
   path: feed.xml
@@ -94,4 +94,8 @@ exclude:
   - "*.Rmd"
   - .git*
 
-incremental: true
+languages: ["en", "zh_TW"]
+default_lang: "en"
+exclude_from_localization: ["assets"]
+parallel_localization: true
+url: https://mywebsite.com/

@@ -19,7 +19,7 @@ url: https://No3371.github.io/blog/
 CNAME: #add cname for website to be created
 
 # Social info
-navigation: False # show the navbar links
+navigation: True # show the navbar links
 subscribers: True # you need to connect an external service for this to work,
 # if 'True' the submit button is disabled for now, but you can change that
 # by editing `_includes/subscribe-form.html`
@@ -98,4 +98,5 @@ exclude:
 languages: ["en", "zh_TW"]
 default_lang: "en"
 exclude_from_localization: ["assets"]
-parallel_localization: true
+parallel_localization: false
+lang_from_path: true

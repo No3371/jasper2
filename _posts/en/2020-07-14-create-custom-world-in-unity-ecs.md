@@ -5,7 +5,7 @@ cover:  assets/images/welcome.jpg
 navigation: True
 title: Create Custom World in Unity ECS
 date: 2020-07-14 18:07:00
-tags: [Getting started]
+tags: [Unity, Coding]
 class: post-template
 subclass: 'post'
 author: No3371

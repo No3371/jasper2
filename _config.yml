@@ -1,5 +1,5 @@
 # Jekyll configuration
-markdown: kramdown
+markdown: GFM
 highlighter: rouge
 paginate: 100 # it will paginate after this number
 paginate_path: "/page:num/"
@@ -100,4 +100,3 @@ languages: ["en", "zh_TW"]
 default_lang: "en"
 exclude_from_localization: ["assets"]
 parallel_localization: true
-lang_from_path: true

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="https://no3371.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://no3371.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-07-15T04:20:06+08:00</updated><id>https://no3371.github.io/blog/</id><title type="html">#3371</title><subtitle>Where a crazy guy talks about coding, games or boring thought.</subtitle><entry xml:lang="zh_TW"><title type="html">The Evolution Of Variables</title><link href="https://no3371.github.io/blog/the-evolution-of-variables" rel="alternate" type="text/html" title="The Evolution Of Variables" /><published>2020-07-15T02:07:00+08:00</published><updated>2020-07-15T02:07:00+08:00</updated><id>https://no3371.github.io/blog/the-evolution-of-variables</id><content type="html" xml:base="https://no3371.github.io/blog/the-evolution-of-variables">&lt;p&gt;看看這個算式：&lt;code class=&quot;highlighter-rouge&quot;&gt;ATK = STR * 10&lt;/code&gt;，是不是很簡單？&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="https://no3371.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://no3371.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-07-15T04:25:00+08:00</updated><id>https://no3371.github.io/blog/</id><title type="html">#3371</title><subtitle>Where a crazy guy talks about coding, games or boring thought.</subtitle><entry xml:lang="zh_TW"><title type="html">The Evolution Of Variables</title><link href="https://no3371.github.io/blog/the-evolution-of-variables" rel="alternate" type="text/html" title="The Evolution Of Variables" /><published>2020-07-15T02:07:00+08:00</published><updated>2020-07-15T02:07:00+08:00</updated><id>https://no3371.github.io/blog/the-evolution-of-variables</id><content type="html" xml:base="https://no3371.github.io/blog/the-evolution-of-variables">&lt;p&gt;看看這個算式：&lt;code class=&quot;highlighter-rouge&quot;&gt;ATK = STR * 10&lt;/code&gt;，是不是很簡單？&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ATK = (STR + DEX) * 5&lt;/code&gt; 也很簡單，我相信你可以在得到 STR 跟 DEX 的值之後飛快地告訴我答案。&lt;/p&gt;
 
@@ -8,8 +8,7 @@
   &lt;p&gt;DMG = (((ATK + BASE_ATK_MODIFIER) * ATK_MULTIPLIER + ATK_MODIFIER) * ATK_TO_DMG_RATIO + DMG_MODIFIER) * FINAL_DMG_MULTIPLIER&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Looks like something that you need in a RPG game with a complete sets of potions, buffs, debuffs, etc. right? You have to do something like this when you need to calculate how much damage a character can made.
-Leme try to convert this to C#:&lt;/p&gt;
+&lt;p&gt;這看起來像是一個完整的 RPG 遊戲，有豐富的藥水效果、技能增減益的那種遊戲可以用上的計算流程，對吧？當你需要計算一個角色可以造成多少傷害的時候，你就會需要像這樣計算出傷害值。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-CSharp&quot;&gt;float newDmg;
 newDmg = atk + baseAtkModifier;
@@ -99,9 +98,9 @@ void main ()
   &lt;p&gt;Modern problems require modern solutions.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;It’s time to introduce a automatic system to take over the burden.&lt;/p&gt;</content><author><name>No3371</name></author><category term="Unity" /><category term="Coding" /><summary type="html">看看這個算式：ATK = STR * 10，是不是很簡單？</summary></entry><entry xml:lang="en"><title type="html">Create Custom World in Unity ECS</title><link href="https://no3371.github.io/blog/create-custom-world-in-unity-ecs" rel="alternate" type="text/html" title="Create Custom World in Unity ECS" /><published>2020-07-15T02:07:00+08:00</published><updated>2020-07-15T02:07:00+08:00</updated><id>https://no3371.github.io/blog/create-custom-world-in-unity-ecs</id><content type="html" xml:base="https://no3371.github.io/blog/create-custom-world-in-unity-ecs">&lt;p&gt;:::info
-This article assumes you Unity ECS knowledge mentioned in the article (:door:&lt;a href=&quot;https://gametorrahod.com/world-system-groups-update-order-and-the-player-loop/&quot;&gt;link&lt;/a&gt;) (some part of it is deprecated).
-:::&lt;/p&gt;
+&lt;p&gt;It’s time to introduce a automatic system to take over the burden.&lt;/p&gt;</content><author><name>No3371</name></author><category term="Unity" /><category term="Coding" /><summary type="html">看看這個算式：ATK = STR * 10，是不是很簡單？</summary></entry><entry xml:lang="en"><title type="html">Create Custom World in Unity ECS</title><link href="https://no3371.github.io/blog/create-custom-world-in-unity-ecs" rel="alternate" type="text/html" title="Create Custom World in Unity ECS" /><published>2020-07-15T02:07:00+08:00</published><updated>2020-07-15T02:07:00+08:00</updated><id>https://no3371.github.io/blog/create-custom-world-in-unity-ecs</id><content type="html" xml:base="https://no3371.github.io/blog/create-custom-world-in-unity-ecs">&lt;blockquote&gt;
+  &lt;p&gt;This article assumes you Unity ECS knowledge mentioned in the article (:door:&lt;a href=&quot;https://gametorrahod.com/world-system-groups-update-order-and-the-player-loop/&quot;&gt;link&lt;/a&gt;) (some part of it is deprecated).&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-CSharp&quot;&gt;using Unity.Entities;
 using UnityEngine;
@@ -126,4 +125,4 @@ public class Bootstrap
     }
 }
 
-&lt;/code&gt;&lt;/pre&gt;</content><author><name>No3371</name></author><category term="Unity" /><category term="Coding" /><summary type="html">:::info This article assumes you Unity ECS knowledge mentioned in the article (:door:link) (some part of it is deprecated). :::</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;</content><author><name>No3371</name></author><category term="Unity" /><category term="Coding" /><summary type="html">This article assumes you Unity ECS knowledge mentioned in the article (:door:link) (some part of it is deprecated).</summary></entry></feed>

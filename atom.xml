@@ -25,9 +25,9 @@
       <item>
         <title>Create Custom World in Unity ECS</title>
         
-          <description>&lt;p&gt;:::info
-This article assumes you Unity ECS knowledge mentioned in the article (:door:&lt;a href=&quot;https://gametorrahod.com/world-system-groups-update-order-and-the-player-loop/&quot;&gt;link&lt;/a&gt;) (some part of it is deprecated).
-:::&lt;/p&gt;
+          <description>&lt;blockquote&gt;
+  &lt;p&gt;This article assumes you Unity ECS knowledge mentioned in the article (:door:&lt;a href=&quot;https://gametorrahod.com/world-system-groups-update-order-and-the-player-loop/&quot;&gt;link&lt;/a&gt;) (some part of it is deprecated).&lt;/p&gt;
+&lt;/blockquote&gt;
 
 </description>
         

@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
   <link href="https://no3371.github.io/blog/author/No3371/feed.xml" rel="self" type="application/atom+xml" />
   <link href="https://no3371.github.io/blog/" rel="alternate" type="text/html" />
-  <updated>2020-07-15T04:20:06+08:00</updated>
+  <updated>2020-07-15T04:25:00+08:00</updated>
   <id>https://no3371.github.io/blog/author/No3371/feed.xml</id>
 
   
@@ -37,9 +37,9 @@
       <published>2020-07-15T02:07:00+08:00</published>
       <updated>2020-07-15T02:07:00+08:00</updated>
       <id>https://no3371.github.io/blog/create-custom-world-in-unity-ecs</id>
-      <content type="html" xml:base="https://no3371.github.io/blog/create-custom-world-in-unity-ecs">&lt;p&gt;:::info
-This article assumes you Unity ECS knowledge mentioned in the article (:door:&lt;a href=&quot;https://gametorrahod.com/world-system-groups-update-order-and-the-player-loop/&quot;&gt;link&lt;/a&gt;) (some part of it is deprecated).
-:::&lt;/p&gt;
+      <content type="html" xml:base="https://no3371.github.io/blog/create-custom-world-in-unity-ecs">&lt;blockquote&gt;
+  &lt;p&gt;This article assumes you Unity ECS knowledge mentioned in the article (:door:&lt;a href=&quot;https://gametorrahod.com/world-system-groups-update-order-and-the-player-loop/&quot;&gt;link&lt;/a&gt;) (some part of it is deprecated).&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-CSharp&quot;&gt;using Unity.Entities;
 using UnityEngine;
@@ -87,7 +87,7 @@ public class Bootstrap
       
 
       
-        <summary type="html">:::info This article assumes you Unity ECS knowledge mentioned in the article (:door:link) (some part of it is deprecated). :::</summary>
+        <summary type="html">This article assumes you Unity ECS knowledge mentioned in the article (:door:link) (some part of it is deprecated).</summary>
       
 
       

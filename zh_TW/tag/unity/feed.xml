@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
   <link href="https://no3371.github.io/blog/tag/unity/feed.xml" rel="self" type="application/atom+xml" />
   <link href="https://no3371.github.io/blog/" rel="alternate" type="text/html" />
-  <updated>2020-07-15T04:20:06+08:00</updated>
+  <updated>2020-07-15T04:25:00+08:00</updated>
   <id>https://no3371.github.io/blog/tag/unity/feed.xml</id>
 
   
@@ -47,8 +47,7 @@
   &lt;p&gt;DMG = (((ATK + BASE_ATK_MODIFIER) * ATK_MULTIPLIER + ATK_MODIFIER) * ATK_TO_DMG_RATIO + DMG_MODIFIER) * FINAL_DMG_MULTIPLIER&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Looks like something that you need in a RPG game with a complete sets of potions, buffs, debuffs, etc. right? You have to do something like this when you need to calculate how much damage a character can made.
-Leme try to convert this to C#:&lt;/p&gt;
+&lt;p&gt;這看起來像是一個完整的 RPG 遊戲，有豐富的藥水效果、技能增減益的那種遊戲可以用上的計算流程，對吧？當你需要計算一個角色可以造成多少傷害的時候，你就會需要像這樣計算出傷害值。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-CSharp&quot;&gt;float newDmg;
 newDmg = atk + baseAtkModifier;
@@ -174,9 +173,9 @@ void main ()
       <published>2020-07-15T02:07:00+08:00</published>
       <updated>2020-07-15T02:07:00+08:00</updated>
       <id>https://no3371.github.io/blog/create-custom-world-in-unity-ecs</id>
-      <content type="html" xml:base="https://no3371.github.io/blog/create-custom-world-in-unity-ecs">&lt;p&gt;:::info
-This article assumes you Unity ECS knowledge mentioned in the article (:door:&lt;a href=&quot;https://gametorrahod.com/world-system-groups-update-order-and-the-player-loop/&quot;&gt;link&lt;/a&gt;) (some part of it is deprecated).
-:::&lt;/p&gt;
+      <content type="html" xml:base="https://no3371.github.io/blog/create-custom-world-in-unity-ecs">&lt;blockquote&gt;
+  &lt;p&gt;This article assumes you Unity ECS knowledge mentioned in the article (:door:&lt;a href=&quot;https://gametorrahod.com/world-system-groups-update-order-and-the-player-loop/&quot;&gt;link&lt;/a&gt;) (some part of it is deprecated).&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-CSharp&quot;&gt;using Unity.Entities;
 using UnityEngine;
@@ -224,7 +223,7 @@ public class Bootstrap
       
 
       
-        <summary type="html">:::info This article assumes you Unity ECS knowledge mentioned in the article (:door:link) (some part of it is deprecated). :::</summary>
+        <summary type="html">This article assumes you Unity ECS knowledge mentioned in the article (:door:link) (some part of it is deprecated).</summary>
       
 
       

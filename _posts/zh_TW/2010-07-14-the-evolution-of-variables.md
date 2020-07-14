@@ -20,8 +20,7 @@ lang: zh_TW
 
 > DMG = (((ATK + BASE_ATK_MODIFIER) * ATK_MULTIPLIER + ATK_MODIFIER) * ATK_TO_DMG_RATIO + DMG_MODIFIER) * FINAL_DMG_MULTIPLIER
 
-Looks like something that you need in a RPG game with a complete sets of potions, buffs, debuffs, etc. right? You have to do something like this when you need to calculate how much damage a character can made.
-Leme try to convert this to C#:
+這看起來像是一個完整的 RPG 遊戲，有豐富的藥水效果、技能增減益的那種遊戲可以用上的計算流程，對吧？當你需要計算一個角色可以造成多少傷害的時候，你就會需要像這樣計算出傷害值。
 
 ```CSharp
 float newDmg;

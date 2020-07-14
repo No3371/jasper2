@@ -5,7 +5,9 @@ rvm:
 - 2.5.1
 
 before_install:
+- date
 - export TZ=Asia/Taipei
+- date
 
 install:
 - bundle install

@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>The Evolution Of Variables</title>
+        
+          <description>&lt;p&gt;Take a look at this equation: &lt;code class=&quot;highlighter-rouge&quot;&gt;ATK = STR * 10&lt;/code&gt;. It’s simple, isn’t it?&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 15 Jul 2020 02:07:00 +0800</pubDate>
+        <link>
+        https://No3371.github.io/the-evolution-of-variables</link>
+        <guid isPermaLink="true">https://No3371.github.io/the-evolution-of-variables</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Create Custom World in Unity ECS</title>
         
           <description>&lt;p&gt;:::info
@@ -20,36 +35,6 @@ This article assumes you Unity ECS knowledge mentioned in the article (:door:&lt
         <link>
         https://No3371.github.io/create-custom-world-in-unity-ecs</link>
         <guid isPermaLink="true">https://No3371.github.io/create-custom-world-in-unity-ecs</guid>
-      </item>
-      
-    
-      
-      <item>
-        <title>The Evolution Of Variables</title>
-        
-          <description>&lt;p&gt;Take a look at this equation: &lt;code class=&quot;highlighter-rouge&quot;&gt;ATK = STR * 10&lt;/code&gt;. It’s simple, isn’t it?&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Wed, 15 Jul 2020 02:07:00 +0800</pubDate>
-        <link>
-        https://No3371.github.io/the-evolution-of-variables-zh_TW</link>
-        <guid isPermaLink="true">https://No3371.github.io/the-evolution-of-variables-zh_TW</guid>
-      </item>
-      
-    
-      
-      <item>
-        <title>The Evolution Of Variables</title>
-        
-          <description>&lt;p&gt;Take a look at this equation: &lt;code class=&quot;highlighter-rouge&quot;&gt;ATK = STR * 10&lt;/code&gt;. It’s simple, isn’t it?&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Wed, 15 Jul 2020 02:07:00 +0800</pubDate>
-        <link>
-        https://No3371.github.io/the-evolution-of-variables-en</link>
-        <guid isPermaLink="true">https://No3371.github.io/the-evolution-of-variables-en</guid>
       </item>
       
     

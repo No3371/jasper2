@@ -2,6 +2,7 @@
 markdown: kramdown
 highlighter: rouge
 paginate: 100 # it will paginate after this number
+paginate_path: "/page:num/"
 language: 'en'
 words_per_minute: 200
 

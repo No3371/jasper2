@@ -17,7 +17,7 @@ logo: assets/images/blog-icon.png
 logo_dark: assets/images/favicon.png
 favicon: assets/images/favicon.png
 url: https://No3371.github.io/
-timezone: TW
+timezone: Asia/Taipei
 CNAME: #add cname for website to be created
 
 # Social info
@@ -99,6 +99,6 @@ exclude:
 
 languages: ["en", "zh_TW"]
 default_lang: "en"
-exclude_from_localization: ["assets/built"]
+exclude_from_localization: ["assets"]
 parallel_localization: true
 lang_from_path: true

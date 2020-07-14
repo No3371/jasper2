@@ -6,6 +6,7 @@ paginate_path: "/page:num/"
 language: 'en'
 words_per_minute: 200
 
+url: https://No3371.github.io
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
 baseurl: /blog/
 
@@ -16,8 +17,6 @@ cover: assets/images/blog-cover.jpg
 logo: assets/images/blog-icon.png
 logo_dark: assets/images/favicon.png
 favicon: assets/images/favicon.png
-url: https://No3371.github.io/
-timezone: Asia/Taipei
 CNAME: #add cname for website to be created
 
 # Social info

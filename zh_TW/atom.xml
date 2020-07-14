@@ -33,143 +33,23 @@ This article assumes you Unity ECS knowledge mentioned in the article (:door:&lt
         
         <pubDate>Wed, 15 Jul 2020 02:07:00 +0800</pubDate>
         <link>
+        https://No3371.github.io/the-evolution-of-variables-zh_TW</link>
+        <guid isPermaLink="true">https://No3371.github.io/the-evolution-of-variables-zh_TW</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>The Evolution Of Variables</title>
+        
+          <description>&lt;p&gt;Take a look at this equation: &lt;code class=&quot;highlighter-rouge&quot;&gt;ATK = STR * 10&lt;/code&gt;. It’s simple, isn’t it?&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 15 Jul 2020 02:07:00 +0800</pubDate>
+        <link>
         https://No3371.github.io/the-evolution-of-variables-en</link>
         <guid isPermaLink="true">https://No3371.github.io/the-evolution-of-variables-en</guid>
-      </item>
-      
-    
-      
-      <item>
-        <title>InZH</title>
-        
-          <description>&lt;p&gt;Hey! Welcome to Ghost, it’s great to have you :)&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Thu, 27 Jul 2017 18:00:00 +0800</pubDate>
-        <link>
-        https://No3371.github.io/in-zh-without-front</link>
-        <guid isPermaLink="true">https://No3371.github.io/in-zh-without-front</guid>
-      </item>
-      
-    
-      
-      <item>
-        <title>InZHZH</title>
-        
-          <description>&lt;p&gt;Hey! Welcome to Ghost, it’s great to have you :)&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Thu, 27 Jul 2017 18:00:00 +0800</pubDate>
-        <link>
-        https://No3371.github.io/in-zh-with-zh-front</link>
-        <guid isPermaLink="true">https://No3371.github.io/in-zh-with-zh-front</guid>
-      </item>
-      
-    
-      
-      <item>
-        <title>InZHEN</title>
-        
-          <description>&lt;p&gt;Hey! Welcome to Ghost, it’s great to have you :)&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Thu, 27 Jul 2017 18:00:00 +0800</pubDate>
-        <link>
-        https://No3371.github.io/in-zh-with-en-front</link>
-        <guid isPermaLink="true">https://No3371.github.io/in-zh-with-en-front</guid>
-      </item>
-      
-    
-      
-      <item>
-        <title>InEN</title>
-        
-          <description>&lt;p&gt;Hey! Welcome to Ghost, it’s great to have you :)&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Thu, 27 Jul 2017 18:00:00 +0800</pubDate>
-        <link>
-        https://No3371.github.io/in-en-without-front</link>
-        <guid isPermaLink="true">https://No3371.github.io/in-en-without-front</guid>
-      </item>
-      
-    
-      
-      <item>
-        <title>InENZH</title>
-        
-          <description>&lt;p&gt;Hey! Welcome to Ghost, it’s great to have you :)&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Thu, 27 Jul 2017 18:00:00 +0800</pubDate>
-        <link>
-        https://No3371.github.io/in-en-with-zh-front</link>
-        <guid isPermaLink="true">https://No3371.github.io/in-en-with-zh-front</guid>
-      </item>
-      
-    
-      
-      <item>
-        <title>InENEN</title>
-        
-          <description>&lt;p&gt;Hey! Welcome to Ghost, it’s great to have you :)&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Thu, 27 Jul 2017 18:00:00 +0800</pubDate>
-        <link>
-        https://No3371.github.io/in-en-with-en-front</link>
-        <guid isPermaLink="true">https://No3371.github.io/in-en-with-en-front</guid>
-      </item>
-      
-    
-      
-      <item>
-        <title>OUT</title>
-        
-          <description>&lt;p&gt;Hey! Welcome to Ghost, it’s great to have you :)&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Thu, 27 Jul 2017 18:00:00 +0800</pubDate>
-        <link>
-        https://No3371.github.io/out-without-front</link>
-        <guid isPermaLink="true">https://No3371.github.io/out-without-front</guid>
-      </item>
-      
-    
-      
-      <item>
-        <title>OUTZH</title>
-        
-          <description>&lt;p&gt;Hey! Welcome to Ghost, it’s great to have you :)&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Thu, 27 Jul 2017 18:00:00 +0800</pubDate>
-        <link>
-        https://No3371.github.io/out-with-zh-front</link>
-        <guid isPermaLink="true">https://No3371.github.io/out-with-zh-front</guid>
-      </item>
-      
-    
-      
-      <item>
-        <title>OUTEN</title>
-        
-          <description>&lt;p&gt;Hey! Welcome to Ghost, it’s great to have you :)&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Thu, 27 Jul 2017 18:00:00 +0800</pubDate>
-        <link>
-        https://No3371.github.io/out-with-en-front-copy</link>
-        <guid isPermaLink="true">https://No3371.github.io/out-with-en-front-copy</guid>
       </item>
       
     

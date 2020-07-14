@@ -9,6 +9,7 @@ tags: [Getting started]
 class: post-template
 subclass: 'post'
 author: No3371
+lang: zh-TW
 ---
 
 Take a look at this equation: `ATK = STR * 10`. It's simple, isn't it?

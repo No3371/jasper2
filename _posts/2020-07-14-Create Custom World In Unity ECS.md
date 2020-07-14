@@ -9,6 +9,7 @@ tags: [Getting started]
 class: post-template
 subclass: 'post'
 author: No3371
+lang: en
 ---
 :::info
 This article assumes you Unity ECS knowledge mentioned in the article (:door:[link](https://gametorrahod.com/world-system-groups-update-order-and-the-player-loop/)) (some part of it is deprecated).

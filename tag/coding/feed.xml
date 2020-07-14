@@ -2,10 +2,10 @@
 
 <feed xmlns="http://www.w3.org/2005/Atom" >
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
-  <link href="https://no3371.github.io/blog/author/No3371/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://no3371.github.io/blog/tag/coding/feed.xml" rel="self" type="application/atom+xml" />
   <link href="https://no3371.github.io/blog/" rel="alternate" type="text/html" />
   <updated>2020-07-15T02:46:07+08:00</updated>
-  <id>https://no3371.github.io/blog/author/No3371/feed.xml</id>
+  <id>https://no3371.github.io/blog/tag/coding/feed.xml</id>
 
   
   
@@ -30,6 +30,69 @@
   
   
 
+  
+    <entry xml:lang="en">
+      <title type="html">Create Custom World in Unity ECS</title>
+      <link href="https://no3371.github.io/blog/create-custom-world-in-unity-ecs" rel="alternate" type="text/html" title="Create Custom World in Unity ECS" />
+      <published>2020-07-15T02:07:00+08:00</published>
+      <updated>2020-07-15T02:07:00+08:00</updated>
+      <id>https://no3371.github.io/blog/create-custom-world-in-unity-ecs</id>
+      <content type="html" xml:base="https://no3371.github.io/blog/create-custom-world-in-unity-ecs">&lt;p&gt;:::info
+This article assumes you Unity ECS knowledge mentioned in the article (:door:&lt;a href=&quot;https://gametorrahod.com/world-system-groups-update-order-and-the-player-loop/&quot;&gt;link&lt;/a&gt;) (some part of it is deprecated).
+:::&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-CSharp&quot;&gt;using Unity.Entities;
+using UnityEngine;
+using UnityEngine.LowLevel;
+
+public class Bootstrap
+{
+    // It's just i want to create the world so early, it's up to you when to create the world
+    [RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.BeforeSceneLoad)]
+    static void CreateWorld ()
+    {
+        World w = new World(&quot;BootWorld&quot;);
+        ScriptBehaviourUpdateOrder.UpdatePlayerLoop(w, PlayerLoop.GetCurrentPlayerLoop()); // You have to hook the world into player loop
+        w.GetOrCreateSystem&amp;lt;InitializationSystemGroup&amp;gt;(); // Player loop only update these group
+        w.GetOrCreateSystem&amp;lt;SimulationSystemGroup&amp;gt;();     // Player loop only update these group
+        w.GetOrCreateSystem&amp;lt;PresentationSystemGroup&amp;gt;();   // Player loop only update these group
+        w.GetOrCreateSystem&amp;lt;YourSystem&amp;gt;(); // Create the sytem in the world
+        // We have to add the system to any of the 3 group.
+        // Otherwise the system idly exist in the world, but won't do anything and won't show up in the debugger
+        w.GetExistingSystem&amp;lt;InitializationSystemGroup&amp;gt;().AddSystemToUpdateList(w.GetExistingSystem&amp;lt;YourSystem&amp;gt;());
+        // Now the system should be working and can query for interesting entites
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>No3371</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="Unity" />
+      
+        <category term="Coding" />
+      
+
+      
+        <summary type="html">:::info This article assumes you Unity ECS knowledge mentioned in the article (:door:link) (some part of it is deprecated). :::</summary>
+      
+
+      
+      
+    </entry>
   
     <entry xml:lang="zh_TW">
       <title type="html">The Evolution Of Variables</title>
@@ -162,69 +225,6 @@ void main ()
 
       
         <summary type="html">Take a look at this equation: ATK = STR * 10. It’s simple, isn’t it?</summary>
-      
-
-      
-      
-    </entry>
-  
-    <entry xml:lang="en">
-      <title type="html">Create Custom World in Unity ECS</title>
-      <link href="https://no3371.github.io/blog/create-custom-world-in-unity-ecs" rel="alternate" type="text/html" title="Create Custom World in Unity ECS" />
-      <published>2020-07-15T02:07:00+08:00</published>
-      <updated>2020-07-15T02:07:00+08:00</updated>
-      <id>https://no3371.github.io/blog/create-custom-world-in-unity-ecs</id>
-      <content type="html" xml:base="https://no3371.github.io/blog/create-custom-world-in-unity-ecs">&lt;p&gt;:::info
-This article assumes you Unity ECS knowledge mentioned in the article (:door:&lt;a href=&quot;https://gametorrahod.com/world-system-groups-update-order-and-the-player-loop/&quot;&gt;link&lt;/a&gt;) (some part of it is deprecated).
-:::&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-CSharp&quot;&gt;using Unity.Entities;
-using UnityEngine;
-using UnityEngine.LowLevel;
-
-public class Bootstrap
-{
-    // It's just i want to create the world so early, it's up to you when to create the world
-    [RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.BeforeSceneLoad)]
-    static void CreateWorld ()
-    {
-        World w = new World(&quot;BootWorld&quot;);
-        ScriptBehaviourUpdateOrder.UpdatePlayerLoop(w, PlayerLoop.GetCurrentPlayerLoop()); // You have to hook the world into player loop
-        w.GetOrCreateSystem&amp;lt;InitializationSystemGroup&amp;gt;(); // Player loop only update these group
-        w.GetOrCreateSystem&amp;lt;SimulationSystemGroup&amp;gt;();     // Player loop only update these group
-        w.GetOrCreateSystem&amp;lt;PresentationSystemGroup&amp;gt;();   // Player loop only update these group
-        w.GetOrCreateSystem&amp;lt;YourSystem&amp;gt;(); // Create the sytem in the world
-        // We have to add the system to any of the 3 group.
-        // Otherwise the system idly exist in the world, but won't do anything and won't show up in the debugger
-        w.GetExistingSystem&amp;lt;InitializationSystemGroup&amp;gt;().AddSystemToUpdateList(w.GetExistingSystem&amp;lt;YourSystem&amp;gt;());
-        // Now the system should be working and can query for interesting entites
-    }
-}
-
-&lt;/code&gt;&lt;/pre&gt;</content>
-
-      
-      
-      
-      
-      
-
-      <author>
-          <name>No3371</name>
-        
-        
-      </author>
-
-      
-
-      
-        <category term="Unity" />
-      
-        <category term="Coding" />
-      
-
-      
-        <summary type="html">:::info This article assumes you Unity ECS knowledge mentioned in the article (:door:link) (some part of it is deprecated). :::</summary>
       
 
       

@@ -1,4 +1,132 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="https://no3371.github.io//blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://no3371.github.io//blog/" rel="alternate" type="text/html" /><updated>2020-07-15T02:06:08+08:00</updated><id>https://no3371.github.io//blog/</id><title type="html">#3371</title><subtitle>Where a crazy guy talks about coding, games or boring thought.</subtitle><entry><title type="html">Welcome to Ghost</title><link href="https://no3371.github.io//blog/welcome-en" rel="alternate" type="text/html" title="Welcome to Ghost" /><published>2017-07-27T18:00:00+08:00</published><updated>2017-07-27T18:00:00+08:00</updated><id>https://no3371.github.io//blog/welcome-en</id><content type="html" xml:base="https://no3371.github.io//blog/welcome-en">&lt;p&gt;Hey! Welcome to Ghost, it’s great to have you :)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="https://no3371.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://no3371.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-07-15T02:46:07+08:00</updated><id>https://no3371.github.io/blog/</id><title type="html">#3371</title><subtitle>Where a crazy guy talks about coding, games or boring thought.</subtitle><entry xml:lang="en"><title type="html">Create Custom World in Unity ECS</title><link href="https://no3371.github.io/blog/create-custom-world-in-unity-ecs" rel="alternate" type="text/html" title="Create Custom World in Unity ECS" /><published>2020-07-15T02:07:00+08:00</published><updated>2020-07-15T02:07:00+08:00</updated><id>https://no3371.github.io/blog/create-custom-world-in-unity-ecs</id><content type="html" xml:base="https://no3371.github.io/blog/create-custom-world-in-unity-ecs">&lt;p&gt;:::info
+This article assumes you Unity ECS knowledge mentioned in the article (:door:&lt;a href=&quot;https://gametorrahod.com/world-system-groups-update-order-and-the-player-loop/&quot;&gt;link&lt;/a&gt;) (some part of it is deprecated).
+:::&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-CSharp&quot;&gt;using Unity.Entities;
+using UnityEngine;
+using UnityEngine.LowLevel;
+
+public class Bootstrap
+{
+    // It's just i want to create the world so early, it's up to you when to create the world
+    [RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.BeforeSceneLoad)]
+    static void CreateWorld ()
+    {
+        World w = new World(&quot;BootWorld&quot;);
+        ScriptBehaviourUpdateOrder.UpdatePlayerLoop(w, PlayerLoop.GetCurrentPlayerLoop()); // You have to hook the world into player loop
+        w.GetOrCreateSystem&amp;lt;InitializationSystemGroup&amp;gt;(); // Player loop only update these group
+        w.GetOrCreateSystem&amp;lt;SimulationSystemGroup&amp;gt;();     // Player loop only update these group
+        w.GetOrCreateSystem&amp;lt;PresentationSystemGroup&amp;gt;();   // Player loop only update these group
+        w.GetOrCreateSystem&amp;lt;YourSystem&amp;gt;(); // Create the sytem in the world
+        // We have to add the system to any of the 3 group.
+        // Otherwise the system idly exist in the world, but won't do anything and won't show up in the debugger
+        w.GetExistingSystem&amp;lt;InitializationSystemGroup&amp;gt;().AddSystemToUpdateList(w.GetExistingSystem&amp;lt;YourSystem&amp;gt;());
+        // Now the system should be working and can query for interesting entites
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;</content><author><name>No3371</name></author><category term="Unity" /><category term="Coding" /><summary type="html">:::info This article assumes you Unity ECS knowledge mentioned in the article (:door:link) (some part of it is deprecated). :::</summary></entry><entry xml:lang="zh_TW"><title type="html">The Evolution Of Variables</title><link href="https://no3371.github.io/blog/the-evolution-of-variables-en" rel="alternate" type="text/html" title="The Evolution Of Variables" /><published>2020-07-15T02:07:00+08:00</published><updated>2020-07-15T02:07:00+08:00</updated><id>https://no3371.github.io/blog/the-evolution-of-variables-en</id><content type="html" xml:base="https://no3371.github.io/blog/the-evolution-of-variables-en">&lt;p&gt;Take a look at this equation: &lt;code class=&quot;highlighter-rouge&quot;&gt;ATK = STR * 10&lt;/code&gt;. It’s simple, isn’t it?&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ATK = (STR + DEX) * 5&lt;/code&gt; is also simple, I have no doubt you can tell me the answer in seconds when I tell you the value of STR and DEX.&lt;/p&gt;
+
+&lt;p&gt;How about:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;DMG = (((ATK + BASE_ATK_MODIFIER) * ATK_MULTIPLIER + ATK_MODIFIER) * ATK_TO_DMG_RATIO + DMG_MODIFIER) * FINAL_DMG_MULTIPLIER&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Looks like something that you need in a RPG game with a complete sets of potions, buffs, debuffs, etc. right? You have to do something like this when you need to calculate how much damage a character can made.
+Leme try to convert this to C#:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-CSharp&quot;&gt;float newDmg;
+newDmg = atk + baseAtkModifier;
+newDmg = newDmg * atkMultiplier + atkModifier;
+newDmg = newDmg * atkToDmgRatio + dmgModifier;
+newDmg *= finalDmgMultiplier; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I have several questions for you:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;If it’s a MMO, how much calculation do you need when you have 10000 players?&lt;/li&gt;
+  &lt;li&gt;When do you run this recalculation? You can cache &lt;code class=&quot;highlighter-rouge&quot;&gt;DMG&lt;/code&gt; so you will not always recalculate it, but you have to do it when any of [&lt;code class=&quot;highlighter-rouge&quot;&gt;ATK&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;BASE_ATK_MODIFIER&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;ATK_MULTIPLIER&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;ATK_MODIFIER&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;ATK_TO_DMG_RATIO&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;DMG_MODIFIER&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;FINAL_DMG_MULTIPLIER&lt;/code&gt;] is changed, right? How do you know that, these dependencies are changed so you have to recalculate?&lt;/li&gt;
+  &lt;li&gt;So to know when you want to push the change to &lt;code class=&quot;highlighter-rouge&quot;&gt;ATK&lt;/code&gt;, so all values depends on it will recalculate, how do you know what values depends on it? What values to recalcualte?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Do You write:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-CSharp&quot;&gt;atk += 10;
+RecalculateDMG();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-CSharp&quot;&gt;atkModifier += 10;
+RecalculateDMG();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;here, there, everywhere? Right, you should improve it a bit:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-CSharp&quot;&gt;void SetATK(float value)
+{
+  atk = value;
+  RecalculateDMG();
+}
+
+void SetBaseAtkModifier(float value) {...}
+void SetAtkMultiplier(float value) {...}
+void SetAtkModifier(float value) {...}
+void SetAtkToDmgRatio(float value) {...}
+void SetDmgModifier(float value) {...}
+void SetFinalDmgMultiplier(float value) {...}
+
+void SetDMG(float value)
+{
+  dmg = value;
+  RecalculateOtherStuffDependsOnDMG();
+}
+
+void RecalculateDMG()
+{
+  float newDmg;
+  newDmg = atk + baseAtkModifier;
+  newDmg = newDmg * atkMultiplier + atkModifier;
+  newDmg = newDmg * atkToDmgRatio + dmgModifier;
+  newDmg *= finalDmgMultiplier; 
+  SetDMG(dmg);
+}
+
+void main ()
+{
+  SetATK(10);
+  SetBaseAtkModifier(1); // From a passive skill: Base ATK + 1
+  SetAtkMultiplier(2); // From a weapon have 200% power
+  SetAtkModifier(10); // From ATK+ potion
+  SetAtkToDmgRatio(1); // Default value
+  SetDmgModifier(-100); // From a debuff that weakening you
+  SetFinalDmgMultiplier(2); // From a game mode that everybody deals double damage
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Some more questions to bother you:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;This is a very simple system, not enough for a RPG, how many codes you’ll have to write and keep maintaining for a complex 4X e.g. Stellaris&lt;/li&gt;
+  &lt;li&gt;The example is a very simple 1 level structure. What if there’re other values depends on &lt;code class=&quot;highlighter-rouge&quot;&gt;DMG&lt;/code&gt;? What if all these values &lt;code class=&quot;highlighter-rouge&quot;&gt;DMG&lt;/code&gt; depends on depends on somethings else? What if deep inside the &lt;code class=&quot;highlighter-rouge&quot;&gt;RecalculateOtherStuffDependsOnDMG()&lt;/code&gt; you unintentionally modified &lt;code class=&quot;highlighter-rouge&quot;&gt;ATK&lt;/code&gt;… you never know before you encounter StackOverflowException.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;SetAtkToDmgRatio(1); // Default value&lt;/code&gt; does not actually change the value, but the recalculation will occurs if you do not check the equality. Do you want to add a if to before all the Set()?&lt;/li&gt;
+  &lt;li&gt;All the calculation before the last Set() is wasted, you only needs the latest DMG… Do you want to come back to the old ways so:
+    &lt;pre&gt;&lt;code class=&quot;language-CSharp&quot;&gt;  atk = 10;
+  baseAtkModifier = 1;
+  atkMultiplier = 2;
+  atkModifier = 10;
+  atkToDmgRatio = 1;
+  dmgModifier = -100;
+  finalDmgMultiplier = 2;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;whenver any of the lines appears in your codebase you place a &lt;code class=&quot;highlighter-rouge&quot;&gt;RecalculateDMG();&lt;/code&gt;… Sounds cool.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You may have realized that, in this way, the model of all these values exist in your head, or on some designer documentation, it’s all your labor to maintain the implementation of the model, any tiny change you’ll have to edit a piece of code.&lt;/p&gt;
+
+&lt;p&gt;As a wise man once said:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Modern problems require modern solutions.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It’s time to introduce a automatic system to take over the burden.&lt;/p&gt;</content><author><name>No3371</name></author><category term="Unity" /><category term="Coding" /><summary type="html">Take a look at this equation: ATK = STR * 10. It’s simple, isn’t it?</summary></entry><entry><title type="html">Welcome to Ghost</title><link href="https://no3371.github.io/blog/welcome-en" rel="alternate" type="text/html" title="Welcome to Ghost" /><published>2017-07-27T18:00:00+08:00</published><updated>2017-07-27T18:00:00+08:00</updated><id>https://no3371.github.io/blog/welcome-en</id><content type="html" xml:base="https://no3371.github.io/blog/welcome-en">&lt;p&gt;Hey! Welcome to Ghost, it’s great to have you :)&lt;/p&gt;
 
 &lt;p&gt;We know that first impressions are important, so we’ve populated your new site with some initial &lt;strong&gt;Getting Started&lt;/strong&gt; posts that will help you get familiar with everything in no time. This is the first one!&lt;/p&gt;
 
@@ -13,7 +141,7 @@
 
 &lt;p&gt;The main thing you’ll want to read about next is probably: &lt;a href=&quot;https://demo.ghost.io/the-editor/&quot;&gt;the Ghost editor&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Once you’re done reading, you can simply delete the default &lt;strong&gt;Ghost&lt;/strong&gt; user from your team to remove all of these introductory posts!&lt;/p&gt;</content><author><name>ghost</name></author><category term="Getting started" /><summary type="html">Hey! Welcome to Ghost, it’s great to have you :)</summary></entry><entry><title type="html">Out to Sea</title><link href="https://no3371.github.io//blog/out-to-sea" rel="alternate" type="text/html" title="Out to Sea" /><published>1912-07-24T18:18:00+08:00</published><updated>1912-07-24T18:18:00+08:00</updated><id>https://no3371.github.io//blog/out-to-sea</id><content type="html" xml:base="https://no3371.github.io//blog/out-to-sea">&lt;p&gt;I had this story from one who had no business to tell it to me, or to any other. I may credit the seductive influence of an old vintage upon the narrator for the beginning of it, and my own skeptical incredulity during the days that followed for the balance of the strange tale.&lt;/p&gt;
+&lt;p&gt;Once you’re done reading, you can simply delete the default &lt;strong&gt;Ghost&lt;/strong&gt; user from your team to remove all of these introductory posts!&lt;/p&gt;</content><author><name>ghost</name></author><category term="Getting started" /><summary type="html">Hey! Welcome to Ghost, it’s great to have you :)</summary></entry><entry><title type="html">Out to Sea</title><link href="https://no3371.github.io/blog/out-to-sea" rel="alternate" type="text/html" title="Out to Sea" /><published>1912-07-24T18:18:00+08:00</published><updated>1912-07-24T18:18:00+08:00</updated><id>https://no3371.github.io/blog/out-to-sea</id><content type="html" xml:base="https://no3371.github.io/blog/out-to-sea">&lt;p&gt;I had this story from one who had no business to tell it to me, or to any other. I may credit the seductive influence of an old vintage upon the narrator for the beginning of it, and my own skeptical incredulity during the days that followed for the balance of the strange tale.&lt;/p&gt;
 
 &lt;p&gt;When my convivial host discovered that he had told me so much, and that I was prone to doubtfulness, his foolish pride assumed the task the old vintage had commenced, and so he unearthed written evidence in the form of musty manuscript, and dry official records of the British Colonial Office to support many of the salient features of his remarkable narrative.&lt;/p&gt;
 

@@ -2,19 +2,20 @@
 markdown: kramdown
 highlighter: rouge
 paginate: 100 # it will paginate after this number
-language: 'en-uk'
+language: 'en'
 words_per_minute: 200
 
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
 baseurl: /blog/
 
 # Website info
-title: \#3371
+title: "#3371"
 description: Where a crazy guy talks about coding, games or boring thought.
 cover: assets/images/blog-cover.jpg
 logo: assets/images/blog-icon.png
 logo_dark: assets/images/favicon.png
 favicon: assets/images/favicon.png
+url: https://No3371.github.io/blog/
 CNAME: #add cname for website to be created
 
 # Social info
@@ -98,4 +99,3 @@ languages: ["en", "zh_TW"]
 default_lang: "en"
 exclude_from_localization: ["assets"]
 parallel_localization: true
-url: https://mywebsite.com/

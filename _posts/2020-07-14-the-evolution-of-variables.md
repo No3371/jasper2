@@ -3,7 +3,7 @@ layout: post
 current: post
 cover:  assets/images/welcome.jpg
 navigation: True
-title: The Evolution Of Value System
+title: The Evolution Of Variables
 date: 2020-07-14 18:07:00
 tags: [Getting started]
 class: post-template

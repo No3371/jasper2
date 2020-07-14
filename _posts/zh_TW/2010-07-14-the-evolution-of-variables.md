@@ -12,11 +12,11 @@ author: No3371
 lang: zh_TW
 ---
 
-Take a look at this equation: `ATK = STR * 10`. It's simple, isn't it?
+看看這個算式：`ATK = STR * 10`，是不是很簡單？
 
-`ATK = (STR + DEX) * 5` is also simple, I have no doubt you can tell me the answer in seconds when I tell you the value of STR and DEX.
+`ATK = (STR + DEX) * 5` 也很簡單，我相信你可以在得到 STR 跟 DEX 的值之後飛快地告訴我答案。
 
-How about:
+再來看看......
 
 > DMG = (((ATK + BASE_ATK_MODIFIER) * ATK_MULTIPLIER + ATK_MODIFIER) * ATK_TO_DMG_RATIO + DMG_MODIFIER) * FINAL_DMG_MULTIPLIER
 

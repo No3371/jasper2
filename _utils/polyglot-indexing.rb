@@ -68,6 +68,7 @@ def process_target_file (file, depth)
         lang = $default_language
     end
 
+
     _, permalink = frontmatter[0].match($permalink_regex)
     if permalink == nil
         permalink = segments[-1].match($extract_post_filename_regex)
@@ -78,11 +79,11 @@ def process_target_file (file, depth)
     end
 
     if $hash == nil
-        $hash = { permalink => { 'localized' => [ lang ]}}
+        $hash = { permalink => [ lang ]}
     elsif $hash[permalink] == nil
-        $hash[permalink] = { 'localized' => [ lang ]}
+        $hash[permalink] = [ lang ]
     else
-        $hash[permalink]['localized'].push(lang)
+        $hash[permalink].push(lang)
     end
 end
 

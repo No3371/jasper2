@@ -75,10 +75,13 @@ def process_target_file (file, depth)
         permalink = permalink[1]
     end
 
-    if $hash[permalink] == nil
-        $hash[permalink] = []
+    if $hash == nil
+        $hash = { permalink => [ lang ]}
+    elsif $hash[permalink] == nil
+        $hash[permalink] = [ lang ]
+    else
+        $hash[permalink].push(lang)
     end
-    $hash[permalink].push(lang)
 end
 
 
@@ -86,7 +89,7 @@ def load_existing_index_file ()
     puts 'loading index file: ' + $index_file_path
     f = File.open($index_file_path, 'r')
     if f != nil
-        hash = YAML::parse(f)
+        $hash = YAML::parse(f)
     end
     f.close
 end
@@ -99,8 +102,6 @@ end
 if ARGV.length > 1
     load_existing_index_file
     $files = ARGV[1].split(',')
-else
-    $hash = {}
 end
 
 if $files != nil

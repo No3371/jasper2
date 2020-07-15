@@ -4,6 +4,11 @@ lang: en
 <h2> Here shows all data in polyglot-index data file.</h2>
 {% for place in site.data.polyglot-index %}
     <h4> PAGE: {{ place }}:</h4><br>
-    {% for locale in site.data.polyglot-index.{{place}} %}
-    {% endfor %}
 {% endfor %}
+
+Try to direct get
+
+{{ site.data.polygot-index.index }}
+{{ site.data.polygot-index.the-evolution-of-variables }}
+{{ site.data.polygot-index.the-evolution-of-variables[0] }}
+{{ site.data.polygot-index.the-evolution-of-variables[1] }}

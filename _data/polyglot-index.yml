@@ -1,9 +1,12 @@
+---
 '404':
 - en
 index:
 - en
 - en
 index-zh:
+- en
+test-index:
 - en
 author:
 - en

@@ -34,7 +34,7 @@ into the {body} of the default.hbs template -->
         <div class="post-feed">
             <!-- The tag below includes the markup for each post - partials/post-card.hbs -->
             {%  include post-card.html %}
-            {% for place in site.data.polyglot-indexs %}
+            {% for place in site.data.polyglot-index %}
                 <p> {{ place }}</p>
                 {% for locale in place %}
                     <p> {{ locale }}</p>

@@ -1,0 +1,7 @@
+<h2> Here shows all data in polyglot-index data file.</h2>
+{% for place in site.data.polyglot-index %}
+    <br><h4> {{ place }}</h4><br>
+    {% for locale in site.data.polyglot-index.{{place}} %}
+        <p> -{{ locale }}</p>
+    {% endfor %}
+{% endfor %}

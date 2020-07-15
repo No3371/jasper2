@@ -1,23 +1,15 @@
 ---
-'404':
-  - en
-index:
-  - en
-  - en
-index-zh:
-  - en
-test-index:
-  - en
-author:
-  - en
-page:
-  - en
-post:
-  - en
-tag:
-  - en
-create-custom-world-in-unity-ecs:
-  - en
-the-evolution-of-variables:
-  - en
-  - zh_TW
+en:
+  - '404'
+  - index
+  - index-zh
+  - index
+  - test-index
+  - author
+  - page
+  - post
+  - tag
+  - create-custom-world-in-unity-ecs
+  - the-evolution-of-variables
+zh_TW:
+  - the-evolution-of-variables

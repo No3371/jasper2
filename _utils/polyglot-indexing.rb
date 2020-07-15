@@ -1,4 +1,5 @@
 require('yaml')
+$map_file_path = './_data/polyglot-map.yml'
 $index_file_path = './_data/polyglot-index.yml'
 $file_regex = '\w*(?:\.md|\.html)' # Must link with file_regex
 $frontmatter_regex = '^-+$(?:[\s\S]+?)^-+$'
@@ -17,6 +18,8 @@ $languages = config_file['languages']
 puts 'configured languages: ' + $languages.join(',')
 $default_language = config_file['default_lang']
 $files = nil
+$map # page->localizations hash
+$index #localization -> pages hash
 
 def recursive (path, depth)
     puts '  ' * depth + 'navigating: ' + path
@@ -78,34 +81,51 @@ def process_target_file (file, depth)
         permalink = permalink[1]
     end
 
-    if $hash == nil
-        $hash = { permalink => [ lang ]}
-    elsif $hash[permalink] == nil
-        $hash[permalink] = [ lang ]
+    if $index == nil
+        $index = { lang => [permalink] }
+    elsif $index[lang] == nil
+        $index[lang] = [ permalink ]
     else
-        $hash[permalink].push(lang)
+        $index[lang].push(permalink)
+    end
+    if $map == nil
+        $map = { permalink => [ lang ]}
+    elsif $map[permalink] == nil
+        $map[permalink] = [ lang ]
+    else
+        $map[permalink].push(lang)
     end
 end
 
 
-def load_existing_index_file ()
+def load_existing_files ()
+    puts 'loading map file: ' + $map_file_path
+    f = File.open($map_file_path, 'r')
+    if f != nil
+        $map = YAML::parse(f)
+    end
+    f.close
     puts 'loading index file: ' + $index_file_path
     f = File.open($index_file_path, 'r')
     if f != nil
-        $hash = YAML::parse(f)
+        $index = YAML::parse(f)
     end
     f.close
 end
 
-def save_index_file ()
-    content = $hash.to_yaml
+def save_files ()
+    content = $map.to_yaml
     content = content.gsub(/^- /, '  - ')
-    f = File.open($index_file_path, 'w') { |file| file.write(content) }
+    File.open($map_file_path, 'w') { |file| file.write(content) }
+    puts 'saved map file: ' + $map_file_path
+    content = $index.to_yaml
+    content = content.gsub(/^- /, '  - ')
+    File.open($index_file_path, 'w') { |file| file.write(content) }
     puts 'saved index file: ' + $index_file_path
 end
 
 if ARGV.length > 1
-    load_existing_index_file
+    load_existing_files
     $files = ARGV[1].split(',')
 end
 
@@ -116,4 +136,4 @@ if $files != nil
 else
     recursive('.', 0)
 end
-save_index_file
+save_files

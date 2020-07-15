@@ -3,16 +3,19 @@ lang: en
 ---
 <h2> Here shows all data in polyglot-index data file.</h2>
 {% for place in site.data.polyglot-index %}
-    <h4> PAGE: {{ place }}:</h4><br>
-    {% for l in site.data.polyglot-index.{{place}}.localized %}
-    <h4> LOCALIZED: {{ l }}:</h4><br>
+    <h4> PAGE: {{ place[0] }}:</h4><br>
+    {{ place[1] }}
+    {% for l in site.data.polyglot-index.{{place}}.place[1].localized %}
+    <h5> LOCALIZED: {{ l }}:</h5><br>
     {% endfor %}
 {% endfor %}
 
 Try to direct get
 
-{{ site.data.polygot-index.index }}
-{{ <site class="data polygot-index index loc"></site> }}
-{{ site.data.polygot-index.404 }}
+{{ site.data.polygot-index.index[0] }}
+{{ site.data.polygot-index.index[1].localized }}
+{{ site.data.polygot-index.404[0] }}
+{{ site.data.polygot-index.404[1] }}
 {{ site.data.polygot-index.post }}
-{{ site.data.polygot-index.the-evolution-of-variables.localized }}
+{{ site.data.polygot-index.the-evolution-of-variables}}
+{{ site.data.polygot-index.the-evolution-of-variables[1] }}

@@ -36,8 +36,8 @@ into the {body} of the default.hbs template -->
             {%  include post-card.html %}
             {% for place in site.data.polyglot-index %}
                 <br><p> {{ place }}</p>
-                {% for locale in place %}
-                    <br><p> {{ locale }}</p>
+                {% for locale in site.data.polyglot-index.{{place}} %}
+                    <p> {{ locale }}</p>
                 {% endfor %}
             {% endfor %}
         </div>

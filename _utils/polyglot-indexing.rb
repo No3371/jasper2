@@ -1,99 +1,113 @@
-include Regexp
-
-index_file_path = './_data/polyglot-index.yml'
-file_regex = '\w*(?:\.md|\.html)'
-frontmatter_regex = '^-+$(?:[\s\S]+?)^-+$'
-lang_regex = '(?:lang:\s?)([\S]+$)'
-permalink_regex = '(?:permalink:\s?)([\S]+$)'
-exclude_regex = ''
-max_depth = 2
-lang_from_path = (ARGV[0] == '--lang_from_path')? true : false
-files = nil
-if ARGV.length > 1
-    load_existing_index_file
-    files = ARGV[1].split(',')
-else
-    hash = {}
-end
-
-depth = 0
-if files != nil
-    files.each do |f|
-        process_target_file(f)
-else
-    recursive('.', depth)
-end
+require('yaml')
+$index_file_path = './_data/polyglot-index.yml'
+$file_regex = '\w*(?:\.md|\.html)' # Must link with file_regex
+$frontmatter_regex = '^-+$(?:[\s\S]+?)^-+$'
+$lang_regex = '(?:lang:\s?)([\S]+$)'
+$permalink_regex = '(?:permalink:\s?)([\S]+$)'
+$extract_post_filename_regex = '(?:\d{4}-\d{2}-\d{2}-)(\S+)(?:.md|.html)' # Link with file_regex
+$extract_nonpost_filename_regex = '(\S+)(?:.md|.html)' # Link with file_regex
+$exclude_regex = '\.git|assets'
+$max_depth = 2
+$lang_from_path = (ARGV[0] == '--lang_from_path')? true : false
+root = File.expand_path('.') + '/'
+puts 'Running at ' + root
+$strip_length = root.length
+config_file = YAML::load_file('./_config.yml')
+$languages = config_file['languages']
+puts 'configured languages: ' + $languages.join(',')
+$default_language = config_file['default_lang']
+$files = nil
 
 def recursive (path, depth)
-    next if filename == '.' or filename == '..' or path.match(exclude_regex)
+    puts '  ' * depth + 'navigating: ' + path
+    Dir.foreach(path) do |filename|
+        next if filename == '.' or filename == '..'
+        fullname = path + '/' + filename
+        puts '  ' * depth + 'checking: ' + filename
+        if $exclude_regex != '' and fullname.match($exclude_regex)
+            puts '  ' * depth + '-- excluded. '
+            next
+        end
 
-    if File.directory?(path) && depth < max_depth
-        depth++
-        recursive(path, depth)
-    else if File.file?(path) && file_regex.match(path)
-        process_target_file(path)
+        if File.directory?(fullname) and depth < $max_depth
+            recursive(fullname, depth+1)
+        elsif File.file?(fullname) and fullname.match($file_regex)
+            process_target_file(fullname, depth)
+        end
     end
 end
 
-def process_target_file (file)
+def process_target_file (file, depth)
+    puts '  ' * depth + '+processing file: ' + file
     f = File.open(file)
     content = f.read
     f.close
-    front = frontmatter_regex.match(content)
-    _, lang = lang_regex.match(front)
-    _, permalink = permalink_regex.match(front)
-    if permalink == nil
-        if lang_from_path
-        end
-    else
-        if hash[permalink] == nil
-            hash[permalink] = []
-        end
-        hash[permalink].push(lang)
+    frontmatter = content.match($frontmatter_regex)
+    if frontmatter == nil
+        puts '  ' * depth + '-file without front matter.'
+        return
     end
+    
+    file = file [2..-1] # strip "./"
+    # puts '  ' * depth + ' stripped path: ' + file
+    segments = file.split('/')
+
+    _, lang = frontmatter[0].match($lang_regex)
+    if segments != nil && lang == nil && $lang_from_path
+        if file[0] == '_' and segments.length > 2 and $languages.include? segments[1]
+            lang = segments[1]
+        elsif segments.length > 1 and $languages.include? segments[0]
+            lang = segments[0]
+        end
+    end
+
+
+    if lang == nil
+        lang = $default_language
+    end
+
+    _, permalink = frontmatter[0].match($permalink_regex)
+    if permalink == nil
+        permalink = segments[-1].match($extract_post_filename_regex)
+        if permalink == nil
+            permalink = segments[-1].match($extract_nonpost_filename_regex)
+        end
+        permalink = permalink[1]
+    end
+
+    if $hash[permalink] == nil
+        $hash[permalink] = []
+    end
+    $hash[permalink].push(lang)
 end
 
+
 def load_existing_index_file ()
-    f = File.open(index_file_path)
+    puts 'loading index file: ' + $index_file_path
+    f = File.open($index_file_path, 'r')
     if f != nil
         hash = YAML::parse(f)
     end
     f.close
 end
-    
 
-def derive_lang_from_path(doc)
-if !@lang_from_path
-    return nil
+def save_index_file ()
+    f = File.open($index_file_path, 'w') { |file| file.write($hash.to_yaml) }
+    puts 'saved index file: ' + $index_file_path
 end
-segments = doc.relative_path.split('/')
-if doc.relative_path[0] == '_' \
-    and segments.length > 2 \
-    and segments[1] =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
-    return segments[1]
-elsif segments.length > 1 \
-    and segments[0] =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
-    return segments[0]
+
+if ARGV.length > 1
+    load_existing_index_file
+    $files = ARGV[1].split(',')
 else
-    return nil
-end
+    $hash = {}
 end
 
-# assigns natural permalinks to documents and prioritizes documents with
-# active_lang languages over others.  If lang is not set in front matter,
-# then this tries to derive from the path, if the lang_from_path is set.
-# otherwise it will assign the document to the default_lang
-def coordinate_documents(docs)
-regex = document_url_regex
-approved = {}
-docs.each do |doc|
-    lang = doc.data['lang'] || derive_lang_from_path(doc) || @default_lang
-    url = doc.url.gsub(regex, '/')
-    doc.data['permalink'] = url
-    next if @file_langs[url] == @active_lang
-    next if @file_langs[url] == @default_lang && lang != @active_lang
-    approved[url] = doc
-    @file_langs[url] = lang
+if $files != nil
+    $files.each do |f|
+        process_target_file(f)
+    end
+else
+    recursive('.', 0)
 end
-approved.values
-end
+save_index_file

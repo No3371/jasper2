@@ -26,7 +26,7 @@ def recursive (path, depth)
     Dir.foreach(path) do |filename|
         next if filename == '.' or filename == '..'
         fullname = path + '/' + filename
-        puts '  ' * depth + 'checking: ' + filename
+        # puts '  ' * depth + 'checking: ' + filename
         if $exclude_regex != '' and fullname.match($exclude_regex)
             puts '  ' * depth + '-- excluded. '
             next

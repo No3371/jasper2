@@ -5,13 +5,13 @@ lang: en
 {% for place in site.data.polyglot-index %}
     <h4> PAGE: {{ place[0] }}:</h4><br>
     {% for lang in place[1] %}
-    <h5>  -{{ lang }}:</h5><br>
+    <h5>  -{{ lang }}</h5><br>
     {% endfor %}
 {% endfor %}
 
 Try to direct get
 
-{{ site.data.polygot-index["404"] }}
-{{ site.data.polygot-index['index'] }}
-{{ site.data.polygot-index["author"] }}
-{{ site.data.polygot-index['create-custom-world-in-unity-ecs'] }}
+<p>{{ site.data.polygot-index["404"] }}</p>
+<p>{{ site.data.polygot-index['index'] }}</p>
+<p>{{ site.data.polygot-index["author"] }}</p>
+<p>{{ site.data.polygot-index['create-custom-world-in-unity-ecs'] }}</p>

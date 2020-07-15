@@ -14,6 +14,9 @@ install:
 
 script:
 - ruby _utils/polyglot-indexing.rb
+- git status
+- git commit -m "Travis polyglot-references auto rebuild"
+- git status
 - bundle exec rake site:deploy --quiet
 # after_success:
 # - git config credential.helper "store --file=.git/credentials"

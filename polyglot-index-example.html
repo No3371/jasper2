@@ -1,22 +1,17 @@
 ---
 lang: en
 ---
-<head>
-<style>
-    body {margin: 2em;}
-    p    {margin: 0;}
-</style>
-</head>
 
 (Front matter is just to tell Jekyll to process this root page html example)
 
+<div style="margin: 2em">
 <p>Using Liquid to access the generated index/map.</p>
 
 <h2> Here shows all data in polyglot-index data file.</h2>
 {% for place in site.data.polyglot-index %}
     <h3> {{ place[0] }}:</h3>
     {% for lang in place[1] %}
-    <p>- {{ lang }}</p>
+    <p style="margin: 0">- {{ lang }}</p>
     {% endfor %}
 {% endfor %}
 
@@ -24,6 +19,7 @@ lang: en
 {% for lang in site.data.polyglot-map %}
     <h3> {{ lang[0] }}:</h3>
     {% for place in lang[1] %}
-    <p>- {{ place }}</p>
+    <p style="margin: 0">- {{ place }}</p>
     {% endfor %}
 {% endfor %}
+</div>

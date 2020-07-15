@@ -13,7 +13,7 @@ install:
 - bundle install
 
 script:
-- ./gen-polyglot-references-lang-from-path
+- ruby _utils/polyglot-indexing.rb
 - bundle exec rake site:deploy --quiet
 # after_success:
 # - git config credential.helper "store --file=.git/credentials"

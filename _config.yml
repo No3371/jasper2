@@ -99,6 +99,6 @@ exclude:
 
 languages: ["en", "zh_TW"]
 default_lang: "en"
-exclude_from_localization: ["assets"]
+exclude_from_localization: ["assets, pages"]
 parallel_localization: true
 lang_from_path: true

@@ -1,23 +1,23 @@
 ---
 '404':
-- en
+  - en
 index:
-- en
-- en
+  - en
+  - en
 index-zh:
-- en
+  - en
 test-index:
-- en
+  - en
 author:
-- en
+  - en
 page:
-- en
+  - en
 post:
-- en
+  - en
 tag:
-- en
+  - en
 create-custom-world-in-unity-ecs:
-- en
+  - en
 the-evolution-of-variables:
-- en
-- zh_TW
+  - en
+  - zh_TW

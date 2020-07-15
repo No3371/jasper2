@@ -53,7 +53,9 @@ def process_target_file (file, depth)
     segments = file.split('/')
 
     _, lang = frontmatter[0].match($lang_regex)
-    if segments != nil && lang == nil && $lang_from_path
+    if lang != nil
+        puts '  ' * depth + 'lang ' + lang + ' marked in front matter.'
+    elsif segments != nil and lang == nil and $lang_from_path
         if file[0] == '_' and segments.length > 2 and $languages.include? segments[1]
             lang = segments[1]
         elsif segments.length > 1 and $languages.include? segments[0]
@@ -61,8 +63,8 @@ def process_target_file (file, depth)
         end
     end
 
-
     if lang == nil
+        puts '  ' * depth + ' can\'t find which language to use. fallback to default_lang: ' + $default_language
         lang = $default_language
     end
 
@@ -95,7 +97,9 @@ def load_existing_index_file ()
 end
 
 def save_index_file ()
-    f = File.open($index_file_path, 'w') { |file| file.write($hash.to_yaml) }
+    content = $hash.to_yaml
+    content = content.gsub(/^- /, '  - ')
+    f = File.open($index_file_path, 'w') { |file| file.write(content) }
     puts 'saved index file: ' + $index_file_path
 end
 

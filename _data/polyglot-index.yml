@@ -1,23 +1,33 @@
 ---
 '404':
+  localized:
   - en
 index:
+  localized:
   - en
   - en
 index-zh:
+  localized:
   - en
 test-index:
+  localized:
   - en
 author:
+  localized:
   - en
 page:
+  localized:
   - en
 post:
+  localized:
   - en
 tag:
+  localized:
   - en
 create-custom-world-in-unity-ecs:
+  localized:
   - en
 the-evolution-of-variables:
+  localized:
   - en
   - zh_TW

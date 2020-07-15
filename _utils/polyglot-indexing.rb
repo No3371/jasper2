@@ -78,11 +78,11 @@ def process_target_file (file, depth)
     end
 
     if $hash == nil
-        $hash = { permalink => [ lang ]}
+        $hash = { permalink => { 'localized' => [ lang ]}}
     elsif $hash[permalink] == nil
-        $hash[permalink] = [ lang ]
+        $hash[permalink] = { 'localized' => [ lang ]}
     else
-        $hash[permalink].push(lang)
+        $hash[permalink]['localized'].push(lang)
     end
 end
 

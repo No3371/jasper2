@@ -58,12 +58,20 @@
         <!-- The footer at the very bottom of the screen -->
         <footer class="site-footer outer">
             <div class="site-footer-content inner">
+                {% if site.active_lang == site.default_lang %}
                 <section class="copyright"><a href="{{ site.url }}{{ site.baseurl }}">{{ site.title }}</a> &copy; {{  site.time | date: '%Y' }}</section>
+                {% else %}
+                <section class="copyright"><a href="{{ site.url }}{{ site.active_lang }}{{ site.baseurl }}">{{ site.title }}</a> &copy; {{  site.time | date: '%Y' }}</section>
+                {% endif %}
                 <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> &
                     <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
                     <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
                 <nav class="site-footer-nav">
+                    {% if site.active_lang == site.default_lang %}
                     <a href="{{ site.baseurl }}">Latest Posts</a>
+                    {% else %}
+                    <a href="{{ site.baseurl }}{{ site.active_lang }}">Latest Posts</a>
+                    {% endif %}
                     {% if site.facebook %}<a href="https://facebook.com/{{ site.facebook }}" target="_blank" rel="noopener">Facebook</a>{% endif %}
                     {% if site.twitter %}<a href="https://twitter.com/{{ site.twitter }}" target="_blank" rel="noopener">Twitter</a>{% endif %}
                     <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>

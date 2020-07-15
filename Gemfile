@@ -7,3 +7,4 @@ gem "slugify", "~> 1.0"
 gem 'jemoji'
 gem "jekyll-polyglot"
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+gem 'jekyll-pug'

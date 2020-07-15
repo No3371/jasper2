@@ -46,7 +46,7 @@ permalink: /:title
 
 # gems and other configs
 plugins_dir: [_plugins]
-plugins: [jekyll-paginate, jekyll-feed, jemoji, jekyll-polyglot]
+plugins: [jekyll-paginate, jekyll-feed, jemoji, jekyll-polyglot, jekyll-pug]
 
 feed:
   path: feed.xml
@@ -95,7 +95,6 @@ exclude:
   - README.md
   - script.py
   - changelog.md
-  - \"*.Rmd\"
   - .git*
 
 languages: ["en", "zh_TW"]

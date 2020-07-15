@@ -2,12 +2,12 @@ require('yaml')
 $map_file_path = './_data/polyglot-map.yml'
 $index_file_path = './_data/polyglot-index.yml'
 $file_regex = '\w*(?:\.md|\.html)' # Must link with file_regex
-$frontmatter_regex = '^-+$(?:[\s\S]+?)^-+$'
-$lang_regex = '(?:lang:\s?)([\S]+$)'
-$permalink_regex = '(?:permalink:\s?)([\S]+$)'
-$extract_post_filename_regex = '(?:\d{4}-\d{2}-\d{2}-)(\S+)(?:.md|.html)' # Link with file_regex
 $extract_nonpost_filename_regex = '(\S+)(?:.md|.html)' # Link with file_regex
+$extract_post_filename_regex = '(?:\d{4}-\d{2}-\d{2}-)(\S+)(?:.md|.html)' # Link with file_regex
 $exclude_regex = '\.git|assets'
+$frontmatter_regex = '^-+$(?:[\s\S]+?)^-+$' # should not ever need to modify this
+$lang_regex = '(?:lang:\s?)([\S]+$)'        # should not ever need to modify this with Polyglot
+$permalink_regex = '(?:permalink:\s?)([\S]+$)' # should not ever need to modify this
 $max_depth = 2
 $lang_from_path = (ARGV[0] == '--lang_from_path')? true : false
 root = File.expand_path('.') + '/'

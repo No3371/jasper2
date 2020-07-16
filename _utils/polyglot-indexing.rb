@@ -1,7 +1,7 @@
 require('yaml')
 $map_file_path = './_data/polyglot-map.yml'
 $index_file_path = './_data/polyglot-index.yml'
-$file_regex = '\w*(?:\.md|\.html)' # Must link with file_regex
+$filename_regex = '\w*(?:\.md|\.html)'
 $extract_nonpost_filename_regex = '(\S+)(?:.md|.html)' # Link with file_regex
 $extract_post_filename_regex = '(?:\d{4}-\d{2}-\d{2}-)(\S+)(?:.md|.html)' # Link with file_regex
 $exclude_regex = '\.git|assets'
@@ -34,7 +34,7 @@ def recursive (path, depth)
 
         if File.directory?(fullname) and depth < $max_depth
             recursive(fullname, depth+1)
-        elsif File.file?(fullname) and fullname.match($file_regex)
+        elsif File.file?(fullname) and fullname.match($filename_regex)
             process_target_file(fullname, depth)
         end
     end

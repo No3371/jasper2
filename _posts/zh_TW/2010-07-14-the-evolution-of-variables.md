@@ -3,24 +3,24 @@ layout: post
 current: post
 cover:  assets/images/welcome.jpg
 navigation: True
-title: The Evolution Of Value System
+title: The Evolution Of Variables
 date: 2020-07-14 18:07:00
-tags: [Getting started]
+tags: [Unity, Coding]
 class: post-template
 subclass: 'post'
 author: No3371
+lang: zh_TW
 ---
 
-Take a look at this equation: `ATK = STR * 10`. It's simple, isn't it?
+看看這個算式：`ATK = STR * 10`，是不是很簡單？
 
-`ATK = (STR + DEX) * 5` is also simple, I have no doubt you can tell me the answer in seconds when I tell you the value of STR and DEX.
+`ATK = (STR + DEX) * 5` 也很簡單，我相信你可以在得到 STR 跟 DEX 的值之後飛快地告訴我答案。
 
-How about:
+再來看看......
 
 > DMG = (((ATK + BASE_ATK_MODIFIER) * ATK_MULTIPLIER + ATK_MODIFIER) * ATK_TO_DMG_RATIO + DMG_MODIFIER) * FINAL_DMG_MULTIPLIER
 
-Looks like something that you need in a RPG game with a complete sets of potions, buffs, debuffs, etc. right? You have to do something like this when you need to calculate how much damage a character can made.
-Leme try to convert this to C#:
+這看起來像是一個完整的 RPG 遊戲，有豐富的藥水效果、技能增減益的那種遊戲可以用上的計算流程，對吧？當你需要計算一個角色可以造成多少傷害的時候，你就會需要像這樣計算出傷害值。
 
 ```CSharp
 float newDmg;

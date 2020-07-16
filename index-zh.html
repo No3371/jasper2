@@ -4,7 +4,7 @@ current: home
 class: 'home-template'
 navigation: True
 permalink:
-lang: en
+lang: zh_TW
 ---
 
 <!-- < default -->
@@ -22,7 +22,7 @@ into the {body} of the default.hbs template -->
                     {{ site.title }}
                 {% endif %}
             </h1>
-            <h2 class="site-description">{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}</h2>
+            <h2 class="site-description">中文版{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}</h2>
         </div>
         {% include site-nav.html %}
     </div>

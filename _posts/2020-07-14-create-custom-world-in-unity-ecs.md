@@ -5,14 +5,13 @@ cover:  assets/images/welcome.jpg
 navigation: True
 title: Create Custom World in Unity ECS
 date: 2020-07-14 18:07:00
-tags: [Getting started]
+tags: [Unity, Coding]
 class: post-template
 subclass: 'post'
 author: No3371
+lang: en
 ---
-:::info
-This article assumes you Unity ECS knowledge mentioned in the article (:door:[link](https://gametorrahod.com/world-system-groups-update-order-and-the-player-loop/)) (some part of it is deprecated).
-:::
+> This article assumes you Unity ECS knowledge mentioned in the article (:door:[link](https://gametorrahod.com/world-system-groups-update-order-and-the-player-loop/)) (some part of it is deprecated).
 
 ```CSharp
 using Unity.Entities;

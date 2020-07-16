@@ -1,15 +1,19 @@
 # Jekyll configuration
 markdown: kramdown
+kramdown:
+  input: GFM
 highlighter: rouge
 paginate: 100 # it will paginate after this number
-language: 'en-uk'
+paginate_path: "/page:num/"
+language: 'en'
 words_per_minute: 200
 
+url: https://No3371.github.io
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
 baseurl: /blog/
 
 # Website info
-title: \#3371
+title: "#3371"
 description: Where a crazy guy talks about coding, games or boring thought.
 cover: assets/images/blog-cover.jpg
 logo: assets/images/blog-icon.png
@@ -18,7 +22,7 @@ favicon: assets/images/favicon.png
 CNAME: #add cname for website to be created
 
 # Social info
-navigation: False # show the navbar links
+navigation: True # show the navbar links
 subscribers: True # you need to connect an external service for this to work,
 # if 'True' the submit button is disabled for now, but you can change that
 # by editing `_includes/subscribe-form.html`
@@ -42,7 +46,7 @@ permalink: /:title
 
 # gems and other configs
 plugins_dir: [_plugins]
-plugins: [jekyll-paginate, jekyll-feed, jemoji]
+plugins: [jekyll-paginate, jekyll-feed, jemoji, jekyll-polyglot, jekyll-pug]
 
 feed:
   path: feed.xml
@@ -91,7 +95,10 @@ exclude:
   - README.md
   - script.py
   - changelog.md
-  - "*.Rmd"
   - .git*
 
-incremental: true
+languages: ["en", "zh_TW"]
+default_lang: "en"
+exclude_from_localization: ["assets, pages"]
+parallel_localization: true
+lang_from_path: true

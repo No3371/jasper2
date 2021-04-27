@@ -1,0 +1,16 @@
+.tags_sidebar {
+    width: 12%;
+    height: 100%;
+    position: fixed;
+    right: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.tags_sidebar a p {
+    font-size: smaller;
+    text-align: right;
+    margin-bottom: 0;
+}

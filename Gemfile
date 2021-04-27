@@ -1,10 +1,10 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
 
-gem "jekyll", "~> 3.7.4"
-gem "github-pages", "~> 192"
-gem "rake", "~> 12.3.1"
-gem "slugify", "~> 1.0"
-gem 'jemoji'
-gem "jekyll-polyglot"
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
-gem 'jekyll-pug'
+source "https://rubygems.org"
+gemspec
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+
+group :jekyll_plugins do
+    gem 'jekyll-pug'
+    # Add other Jekyll plugins you are using below this line.
+  end

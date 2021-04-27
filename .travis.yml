@@ -1,27 +1,19 @@
-sudo: false
 language: ruby
 cache: bundler
+
 rvm:
-- 2.5.1
+  - 2.6
+  - 2.4
 
-before_install:
-- date
-- export TZ=Asia/Taipei
-- date
+notifications:
+    email: false
 
-install:
-- bundle install
+before_install: gem update --system
+install: bash scripts/bootstrap.sh
+script: bash scripts/cibuild.sh
 
-script:
-- ruby _utils/polyglot-indexing.rb --lang_from_path
-- bundle exec rake site:deploy --quiet
-# after_success:
-# - git config credential.helper "store --file=.git/credentials"
-# - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
-# - node ./node_modules/grunt-cli/bin/grunt release
 env:
-  global:
-    secure: RNXEqaAqnk4uCfsCSb3leYM4JuT1GRiavbEZMfm9RyWf28a6uqktdINWxdOxcCITpaoEcdR7gJP5gPMisQXEmTaYldVXpeSnYRYAORDRdEW8QAtB6y+4QIIbwGW+zGMLIZ0UNQxQaOSjX4e7i0JLcjN7ZSjRuYAOR0MsieK9Pjyv8JdFi37uyyTSq3+1eBkka76d0TeUoWy04wIo3YbG5akVN+/Pvr/6s/a/XPPFupElCEGmybxkJaAfGosBEt50Kf1xmFklwMnJYsWvO85GchCBWUiiovTgCeVAl9JiLCk0PGJQ1JKrHwEJ5cX5CqHQwBeD0kuniydOLMVhzV0YU5aWepgNv0ZRH4wrl7S7PCGH1RlCqfvHoFlvyxNbez0/Vo78HqNBTLeoMKe7NF8Jo1oHOF+aJST/VaVcfW5eFM7sKvLqhsuGoosZOuoq1Tpz9HZwki1zI2tIOlaLRR6LaPKo+Y6Gtig5MmrodcD6sAJXhD/DVOUuNXU9AoynU7Icu3bMk/r8XAGz11WkoUzxX8PWZBcHcKe4fgKeX7EB/jvYA1QfuZX/uCx2hRTIjn+Btt1UHrW69Izlvdx5Go8DoWUhViFS3OPd1z2h3ASyLNXDHEZigmeEDOkwUeByJPwIcbFSYPhs2TrM25w1Gfzrlh11P/cKG5BoK0XUW2YofBo=
-branches:
-  only:
-  - master
+  matrix:
+    - JEKYLL_VERSION="~> 3.5.0"
+    - JEKYLL_VERSION="~> 3.8.0"
+    - JEKYLL_VERSION="~> 4.0.0"

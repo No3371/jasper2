@@ -59,3 +59,6 @@ plugins:
 
 jekyll-pug:
   debug: true
+
+exclude:
+  - '*.drawio'

@@ -2,7 +2,6 @@
 layout: post
 title: "Short Article"
 categories: misc
-tags: tag1 tag2
 published: true
 ---
 

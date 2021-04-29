@@ -4,7 +4,6 @@ title: "Post Content Styles"
 categories: junk
 author: "Yizheng Huang"
 meta: "Springfield"
-tags: tag4 tag2
 published: true
 ---
 

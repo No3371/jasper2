@@ -12,7 +12,7 @@ Jekyll::Hooks.register :posts, :post_write do |post|
   def generate_tag_file(tag)
     # generate tag file
     File.open("_tags/#{tag}.md", "wb") do |file|
-      file << "---\nlayout: tags\ntag-name: #{tag}\n---\n"
+      file << "---\nlayout: tagged_posts\ntag-name: #{tag}\n---\n"
     end
     # generate feed file
     File.open("_feeds/#{tag}.xml", "wb") do |file|

@@ -2,7 +2,6 @@
 layout: post
 title: "Language Tests"
 categories: misc
-tags: tag4 tag2
 published: true
 ---
 

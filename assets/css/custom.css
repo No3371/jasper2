@@ -13,4 +13,17 @@
     font-size: smaller;
     text-align: right;
     margin-bottom: 0;
+    color: #00000060
+}
+
+
+.tags_sidebar a p:hover {
+    font-size: smaller;
+    text-align: right;
+    margin-bottom: 0;
+    color: #0d59d3d7
+}
+
+.page_switch {
+    width: 100%;
 }

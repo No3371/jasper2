@@ -2,7 +2,6 @@
 layout: post
 title: "Code Highlight Tests"
 categories: misc
-tags: tag3 tag6 tag8 tag87
 published: true
 ---
 

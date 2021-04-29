@@ -11,9 +11,8 @@ layout: default
     <p class="home-sub-heading">{{- site.description | escape -}}</p>
   </div>
 
-  {%- if site.posts.size > 0 -%}
   <ul class="post-list">
-      {% for post in site.posts  %}
+      {% for post in paginator.posts  %}
       {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
       {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
   
@@ -43,5 +42,15 @@ layout: default
       {% endif %}
   {% endfor %}
   </ul>
-  {%- endif -%}
+  {% if paginator.total_pages > 1 %}
+  <div class="page_switch">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}"><- page#{{ paginator.previous_page }}</a>
+    {% endif %}
+    　|　
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path | prepend: site.baseurl }}">page#{{ paginator.next_page }} -></a>
+    {% endif %}
+  {% endif %}
+  </div>
 </div>

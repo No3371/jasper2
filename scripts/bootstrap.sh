@@ -1,4 +1,4 @@
 set -e
 
 gem install bundler:2.1.4
-bundle install
+bundle _2.1.4_ install

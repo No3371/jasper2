@@ -39,17 +39,16 @@ layout: default
         }}</span></span
       >
       {%- endif -%}
+      {%- if page.tags.size > 0-%}      
+        {% assign sortedTags = page.tags | sort %}
+        &nbsp;&nbsp;Tags:
+        {% for tag in sortedTags %}
+          <span class="tag">
+            <small> <a href="{{ site.baseurl }}/tags/{{ tag }}"> #{{ tag }}</a></small>
+          </span> 
+        {% endfor %}
+      {%- endif -%}
     </p>
-    <div class="tags">
-      {% assign sortedTags = page.tags | sort %}
-      <small>Tags: </small>
-      {% for tag in sortedTags %}
-        <span class="tag">
-          <small> <a href="{{ site.baseurl }}/tags/{{ tag }}"> #{{ tag }}</a></small>
-        </span> 
-      {% endfor %}
-      <br>
-    </div>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">

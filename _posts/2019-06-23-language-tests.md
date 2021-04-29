@@ -2,8 +2,8 @@
 layout: post
 title: "Language Tests"
 categories: misc
-tags: tag4 tag2
 published: true
+language: EN
 ---
 
 ### 1. 日本語テスト

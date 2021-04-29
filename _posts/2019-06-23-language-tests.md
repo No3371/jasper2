@@ -3,6 +3,7 @@ layout: post
 title: "Language Tests"
 categories: misc
 published: true
+language: EN
 ---
 
 ### 1. 日本語テスト

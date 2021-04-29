@@ -27,3 +27,17 @@
 .page_switch {
     width: 100%;
 }
+
+.language_tag {
+    display: inline-block;
+    background-color: rgb(179, 179, 179);
+    border-radius: 0.2em;
+    padding-left: 4px;
+    padding-right: 4px;
+    min-width: 2em;
+    height: 1.5em;
+    color: white;
+    text-align: center;
+    margin-right: 6px;
+    /* vertical-align: middle; */
+}

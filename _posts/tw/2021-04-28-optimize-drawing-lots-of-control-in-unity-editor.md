@@ -3,9 +3,11 @@ layout: post
 title: "Optimize Drawing Lots of Controls in Unity Editor"
 tags: unity optimization
 published: true
+file_key: optimize-drawing-lots-of-control-in-unity-editor
+language: TW
 ---
 
-## IMGUI draws immediately
+## IMGUI 立刻繪製
 
 I've personally not yet tried the new UI System (UIElement), still sticking with the old IMGUI. Immediate Mode GUI, as its name implies, means the GUI get drawn immediately by CPU along with the GUI code statements get executed.
 
@@ -13,9 +15,9 @@ This means if you have a loop that loops through and draw 1000 items, it draws a
 
 Things like this happens: You are checking out a project that worked by others, you opened some random foldout, and boom! It turns out 200 references fields are packed into that tiny foldout! It's a trap! Unity start freezing every seconds because it's trying to draw all the GUI controls every frame, and you start trying hard to click that damn foldout again so you can hide all those GUI controls to stop Unity from freezing.
 
-I'll use a tool I found on Github today as example. It's a logcat viewer that help us read adb logcat output easily. While any program can easily accept and store thousands of log strings, the author decided that it can only show 200 items at once. And I have a simple explanation for that: It can't, without being painful to use.
+Take a tool I found on Github today as example. It's a logcat viewer that help us read adb logcat output easily. While any program can easily accept and store thousands of log strings, the author decided that it can only show 200 items at once. And I have a simple explanation for that: It can't, without being painful to use.
 
-## Which ones are visible?
+## 可見元件
 
 When creating editor tools we often need to display a lot of GUI controls, for example, a complex panel composed of a lot of functional components, or simply a selection panel that shows a lot of options.
 

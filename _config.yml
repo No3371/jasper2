@@ -1,104 +1,64 @@
-# Jekyll configuration
-markdown: kramdown
-kramdown:
-  input: GFM
-highlighter: rouge
-paginate: 100 # it will paginate after this number
-paginate_path: "/page:num/"
-language: 'en'
-words_per_minute: 200
+title: Moving # The title of the blog
+author: BA # Your name 
+email: your-email@domain.com # your email shown in the footer
+url: http://huangyz.name/moving/ # this is your site's root address.
+description: > # this means to ignore newlines until "show_excerpts:"
+  A clean and minimalist theme for Jekyll.
+favicon: "./favicon.ico" # set the favicon of the site 
 
-url: https://No3371.github.io
-# edit baseurl to simply '/' if using as your personal page (instead of a project page)
-baseurl: /blog/
+show_excerpts: false # set to true to show excerpts on the homepage
+  
+# Moving date format
+# refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this
+moving:
+  avatar_url: "https://i.loli.net/2019/08/26/JzCLhDWPEybZr2T.jpg" # avatar in about page
+  about_you: a short description about you. # short description about you in about page
+  date_format: "%b %d" # date format of posts in home page
+  back_to: "Home" # In the post page, you have a back button above the title, you can custom the text by yourself.
 
-# Website info
-title: "#3371"
-description: Where a crazy guy talks about coding, games or boring thought.
-cover: assets/images/blog-cover.jpg
-logo: assets/images/blog-icon.png
-logo_dark: assets/images/favicon.png
-favicon: assets/images/favicon.png
-CNAME: #add cname for website to be created
+  # generate social links in about page.
+  social_links:
+    # twitter: 
+    github:  huangyz0918
+    rss: RSS
+    # dribbble: 
+    facebook: huangyz0918
+    # flickr:   
+    # instagram: 
+    linkedin: yizheng-huang
+    # pinterest: 
+    # youtube: 
+    # youtube_channel: 
+    # youtube_channel_name: 
+    # telegram: 
+    # googleplus: 
+    # microdotblog: 
+    # reddit: 
 
-# Social info
-navigation: True # show the navbar links
-subscribers: True # you need to connect an external service for this to work,
-# if 'True' the submit button is disabled for now, but you can change that
-# by editing `_includes/subscribe-form.html`
-twitter: nan # replace by your username
-facebook: nan # replace by your username
+    # Mastodon instances
+    # mastodon:
+    # - username: 
+    #   instance: 
+    # - username: 
+    #   instance: 
 
-# Disqus
-disqus: False
-disqus_shortname: No3371 # replace with your disqus username
+# Build settings
+theme: moving # note, please use huangyz0918/moving if you want to publish to Github Pages.
 
-# Google Analytics
-google_analytics: UA-172495814-1 # replace with your GA tracking identifier
+collections:
+  tags:
+    output: true
+  feeds:
+    output: true
+  posts:
+    permalink: /posts/:name
 
-# Permalinks
-permalink: /:title
-# permalink: /author/:author
-# permalink: /tag/:tag
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
 
-# Authors' info in `_data/authors.yml`
-# Tags' info in `_data/tags_info.yml`
-
-# gems and other configs
-plugins_dir: [_plugins]
-plugins: [jekyll-paginate, jekyll-feed, jemoji, jekyll-polyglot, jekyll-pug]
-
-feed:
-  path: feed.xml
-
-# Additional settings available on the front-matter
-# Site logo in the index.html (as in demo.ghost.io)
-# Author's page cover in _layouts/author.html
-# The same for page.html and tag.html layouts
-# Post's page cover as a per-post basis _posts/...
-# Disqus comments as a per-post basis
-# ...
-
-# Settings for building master branch with travis-ci
-# with jekyll-travis
-
-# Settings for deploy rake task
-# Username and repo of Github repo, e.g.
-# https://github.com/USERNAME/REPO.git
-# username defaults to ENV['GIT_NAME'] used by Travis
-# repo defaults to USERNAME.github.io
-# Branch defaults to "source" for USERNAME.github.io
-# or "master" otherwise
-safe: False
-lsi: False
-username: No3371
-repo: blog
-branch: master
-relative_source: ../blog/
-destination: ../blog-pages/
-production_url:  https://No3371.github.io/blog/
-source_url:  https://github.com/No3371/blog/
+jekyll-pug:
+  debug: true
 
 exclude:
-  - assets/css
-  - node_modules
-  - vendor
-  - .travis.yml
-  - Gemfile
-  - Gemfile.lock
-  - GHOST.txt
-  - gulpfile.js
-  - LICENSE
-  - package.json
-  - package-lock.json
-  - Rakefile
-  - README.md
-  - script.py
-  - changelog.md
-  - .git*
-
-languages: ["en", "zh_TW"]
-default_lang: "en"
-exclude_from_localization: ["assets, pages"]
-parallel_localization: true
-lang_from_path: true
+  - '*.drawio'

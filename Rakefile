@@ -38,9 +38,9 @@ namespace :site do
 
     sh "git checkout #{SOURCE_BRANCH}"
     
-    sh "git branch -a"
-    sh "git fetch origin #{DESTINATION_BRANCH}"
-    sh "git branch -a"
+    unless Dir.exist? CONFIG["destination"]
+      sh "git clone https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git #{CONFIG["destination"]}"
+    end
 
     Dir.chdir(CONFIG["destination"]) { sh "git checkout #{DESTINATION_BRANCH}" }
 

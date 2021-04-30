@@ -16,12 +16,6 @@ SOURCE_BRANCH = CONFIG["branch"]
 DESTINATION_BRANCH = "gh-pages"
 CNAME = CONFIG["CNAME"]
 
-def check_destination
-  unless Dir.exist? CONFIG["destination"]
-    sh "git clone https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git #{CONFIG["destination"]}"
-  end
-end
-
 namespace :site do
   desc "Generate the site"
   task :build do
@@ -42,6 +36,8 @@ namespace :site do
 
   desc "Generate the site and push changes to remote origin"
   task :deploy do
+
+    Dir.pwd
     # Detect pull request
     if ENV['TRAVIS_PULL_REQUEST'].to_s.to_i > 0
       puts 'Pull request detected. Not proceeding with deploy.'

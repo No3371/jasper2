@@ -59,7 +59,7 @@ plugins:
   - jekyll-seo-tag
 
 jekyll-pug:
-  debug: true
+  debug: false
 
 ############################################################
 # Site configuration for the Jekyll 3 Pagination Gem
@@ -105,12 +105,13 @@ pagination:
 
 ############################################################
 
+CNAME:
 safe: False
 lsi: False
 username: No3371
 repo: blog
 branch: master
-relative_source: ../blog/
-destination: ../blog-pages/
+relative_source: ./
+destination: ./_site/
 production_url:  https://No3371.github.io/blog/
 source_url:  https://github.com/No3371/blog/

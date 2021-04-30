@@ -34,9 +34,6 @@ namespace :site do
       sh "git config --global push.default simple"
     end
 
-    # Make sure destination folder exists as git repo
-    check_destination
-
     sh "git checkout #{SOURCE_BRANCH}"
     Dir.chdir(CONFIG["destination"]) { sh "git checkout #{DESTINATION_BRANCH}" }
 

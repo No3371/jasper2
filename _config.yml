@@ -104,3 +104,13 @@ pagination:
   indexpage: 'index'
 
 ############################################################
+
+safe: False
+lsi: False
+username: No3371
+repo: blog
+branch: master
+relative_source: ../blog/
+destination: ../blog-pages/
+production_url:  https://No3371.github.io/blog/
+source_url:  https://github.com/No3371/blog/

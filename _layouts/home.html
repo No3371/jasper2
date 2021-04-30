@@ -30,15 +30,14 @@ layout: default
           <a class="black-link post-link-layout" href="{{ post.url | relative_url }}">
             {{ post.title | escape }}
           </a>
-          {%- for v in site.posts -%}
-            {%- if v != post and v.language -%}
-              {%- assign key1 = v.id | split: "/" | last -%}
-              {%- assign key2 = post.id | split: "/" | last -%}
-              {%- if key1 == key2 -%}
-                <span class="language_tag"><a href="{{ v.url }}">{{ v.language }}</a></span>
-              {%- endif -%}
-            {%- endif -%}
-          {%- endfor -%}
+          {%- if post.language -%}
+              <span class="language_tag">{{ post.language | upcase }}</span>
+          {%- endif -%}
+          {%- if post.other_language_versions.size > 0 -%}
+            {%- for L in post.other_language_versions -%}
+              <span class="language_option"><a href="{{ site.url }}/posts/{{ L }}"">{{ L | split: "/" | first | upcase }}</a></span>
+            {%- endfor -%}
+          {%- endif -%}
       </li>
   
       {% if forloop.last %}

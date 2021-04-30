@@ -1,4 +1,4 @@
 set -e
 
-echo "Building the example site..."
+echo "Building the site..."
 bundle exec jekyll build

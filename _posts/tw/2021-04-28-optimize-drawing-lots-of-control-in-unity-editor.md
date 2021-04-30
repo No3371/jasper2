@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Optimize Drawing Lots of Controls in Unity Editor"
+title: "如何優化複雜的編輯器介面"
 tags: unity optimization
 published: true
-file_key: optimize-drawing-lots-of-control-in-unity-editor
-language: TW
+language: tw
+other_language_versions: en/2021-04-28-optimize-drawing-lots-of-control-in-unity-editor
 ---
 
 ## IMGUI 立刻繪製

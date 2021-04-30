@@ -13,7 +13,7 @@ CONFIG = YAML.load(File.read('_config.yml'))
 USERNAME = CONFIG["username"]
 REPO = CONFIG["repo"]
 SOURCE_BRANCH = CONFIG["branch"]
-DESTINATION_BRANCH = "origin:gh-pages"
+DESTINATION_BRANCH = "gh-pages"
 CNAME = CONFIG["CNAME"]
 
 namespace :site do
@@ -38,9 +38,9 @@ namespace :site do
 
     sh "git checkout #{SOURCE_BRANCH}"
     
-    sh "git branch"
-    sh "git fetch --all"
-    sh "git branch"
+    sh "git branch -a"
+    sh "git fetch origin #{DESTINATION_BRANCH}"
+    sh "git branch -a"
 
     Dir.chdir(CONFIG["destination"]) { sh "git checkout #{DESTINATION_BRANCH}" }
 

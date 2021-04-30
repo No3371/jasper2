@@ -3,7 +3,8 @@ layout: post
 title: "Optimize Drawing Lots of Controls in Unity Editor"
 tags: unity optimization
 published: true
-language: EN
+language: tw
+other_language_versions: tw/2021-04-28-optimize-drawing-lots-of-control-in-unity-editor
 ---
 
 ## IMGUI draws immediately

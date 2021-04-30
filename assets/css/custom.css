@@ -36,7 +36,24 @@
     padding-right: 4px;
     min-width: 2em;
     height: 1.5em;
+    text-align: center;
+    margin-right: 6px;
     color: white;
+    /* vertical-align: middle; */
+}
+
+.language_option a {
+    color: rgb(179, 179, 179);
+}
+
+.language_option {
+    display: inline-block;
+    border: dashed 2px rgb(179, 179, 179);
+    border-radius: 0.2em;
+    padding-left: 4px;
+    padding-right: 4px;
+    min-width: 2em;
+    height: 1.5em;
     text-align: center;
     margin-right: 6px;
     /* vertical-align: middle; */

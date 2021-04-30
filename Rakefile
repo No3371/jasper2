@@ -34,10 +34,12 @@ namespace :site do
       sh "git config --global push.default simple"
     end
 
+    sh "git remote -v"
+
     sh "git checkout #{SOURCE_BRANCH}"
     
     sh "git branch"
-    sh "git fetch origin #{DESTINATION_BRANCH}"
+    sh "git fetch --all"
     sh "git branch"
 
     Dir.chdir(CONFIG["destination"]) { sh "git checkout #{DESTINATION_BRANCH}" }

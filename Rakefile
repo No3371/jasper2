@@ -13,14 +13,14 @@ CONFIG = YAML.load(File.read('_config.yml'))
 USERNAME = CONFIG["username"]
 REPO = CONFIG["repo"]
 SOURCE_BRANCH = CONFIG["branch"]
-DESTINATION_BRANCH = "gh-pages"
+DESTINATION_BRANCH = "origin:gh-pages"
 CNAME = CONFIG["CNAME"]
 
 namespace :site do
   desc "Generate the site and push changes to remote origin"
   task :deploy do
 
-    Dir.pwd
+    puts Dir.pwd
     # Detect pull request
     if ENV['TRAVIS_PULL_REQUEST'].to_s.to_i > 0
       puts 'Pull request detected. Not proceeding with deploy.'
@@ -35,6 +35,11 @@ namespace :site do
     end
 
     sh "git checkout #{SOURCE_BRANCH}"
+    
+    sh "git branch"
+    sh "git fetch origin #{DESTINATION_BRANCH}"
+    sh "git branch"
+
     Dir.chdir(CONFIG["destination"]) { sh "git checkout #{DESTINATION_BRANCH}" }
 
     # Generate the site

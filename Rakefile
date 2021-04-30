@@ -21,6 +21,7 @@ namespace :site do
   task :deploy do
 
     puts Dir.pwd
+    sh "ls"
     # Detect pull request
     if ENV['TRAVIS_PULL_REQUEST'].to_s.to_i > 0
       puts 'Pull request detected. Not proceeding with deploy.'
@@ -39,6 +40,7 @@ namespace :site do
     sh "git checkout #{SOURCE_BRANCH}"
     
     unless Dir.exist? CONFIG["destination"]
+      puts "Destination does not exist: #{CONFIG[\"destination\"]"
       sh "git clone https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git #{CONFIG["destination"]}"
     end
 

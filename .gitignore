@@ -2,7 +2,6 @@
 .bundle
 .jekyll-cache
 .sass-cache
-_site
 Gemfile.lock
 
 .DS_Store
@@ -10,3 +9,5 @@ Gemfile.lock
 .vscode/
 
 .pug-cache/
+
+_site/

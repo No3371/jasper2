@@ -10,4 +10,6 @@ group :jekyll_plugins do
     # gem 'jekyll-language-plugin'
     gem "jekyll-placeholders", "~> 1.0.0", git: 'https://github.com/ample/jekyll-placeholders.git'
     gem 'jekyll-paginate-v2'
+    gem 'jekyll-feed'
+    gem 'jekyll-seo-tag'
   end

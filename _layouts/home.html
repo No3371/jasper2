@@ -35,7 +35,7 @@ layout: default
           {%- endif -%}
           {%- if post.other_language_versions.size > 0 -%}
             {%- for L in post.other_language_versions -%}
-              <span class="language_option"><a href="{{ site.url }}/posts/{{ L }}"">{{ L | split: "/" | first | upcase }}</a></span>
+              <span class="language_option"><a href="{% post_url  {{ L }} %}"">{{ L | split: "/" | first | upcase }}</a></span>
             {%- endfor -%}
           {%- endif -%}
       </li>

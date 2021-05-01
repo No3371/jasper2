@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<meta name="generator" content="Jekyll v4.0.1" />
+<meta property="og:title" content="如何優化複雜的編輯器介面" />
+<meta name="author" content="BA" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="IMGUI 立刻繪製" />
+<meta property="og:description" content="IMGUI 立刻繪製" />
+<link rel="canonical" href="https://no3371.github.io/blog//posts/tw/2021-04-28-optimize-drawing-lots-of-control-in-unity-editor" />
+<meta property="og:url" content="https://no3371.github.io/blog//posts/tw/2021-04-28-optimize-drawing-lots-of-control-in-unity-editor" />
+<meta property="og:site_name" content="Moving" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-28T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="如何優化複雜的編輯器介面" />
+<script type="application/ld+json">
+{"headline":"如何優化複雜的編輯器介面","dateModified":"2021-04-28T00:00:00+00:00","datePublished":"2021-04-28T00:00:00+00:00","author":{"@type":"Person","name":"BA"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://no3371.github.io/blog//posts/tw/2021-04-28-optimize-drawing-lots-of-control-in-unity-editor"},"@type":"BlogPosting","description":"IMGUI 立刻繪製","url":"https://no3371.github.io/blog//posts/tw/2021-04-28-optimize-drawing-lots-of-control-in-unity-editor","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="https://no3371.github.io/blog//assets/css/main.css" />
+  <link rel="shortcut icon" type="image/x-icon" href="/./favicon.ico?" />
+  <link rel="stylesheet" href="https://no3371.github.io/blog//assets/css/agate.css" />
+  <link rel="stylesheet" href="https://no3371.github.io/blog//assets/css/custom.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script><link type="application/atom+xml" rel="alternate" href="https://no3371.github.io/blog//feed.xml" title="Moving" /></head><body>
+    <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <article
+  class="post h-entry"
+  itemscope
+  itemtype="http://schema.org/BlogPosting"
+>
+  <head>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <title>如何優化複雜的編輯器介面</title>
+  </head>
+  <header class="post-header">
+    <div class="post-back">
+      <a class="black-link" href="https://no3371.github.io/blog/">
+        ← Home
+      </a>
+    </div>
+
+    <h1 class="post-title p-name" itemprop="name headline">
+      如何優化複雜的編輯器介面
+    </h1>
+    <p class="post-meta">
+      <time
+        class="dt-published"
+        datetime="2021-04-28T00:00:00+00:00"
+        itemprop="datePublished"
+      >Apr 28, 2021
+      </time>
+        &nbsp;&nbsp;Tags:
+        
+          <span class="tag">
+            <small> <a href="/tags/optimization"> #optimization</a></small>
+          </span> 
+        
+          <span class="tag">
+            <small> <a href="/tags/unity"> #unity</a></small>
+          </span> 
+        </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="imgui-立刻繪製">IMGUI 立刻繪製</h2>
+
+<p>I’ve personally not yet tried the new UI System (UIElement), still sticking with the old IMGUI. Immediate Mode GUI, as its name implies, means the GUI get drawn immediately by CPU along with the GUI code statements get executed.</p>
+
+<p>This means if you have a loop that loops through and draw 1000 items, it draws all 1000 items every frame, synchronously.</p>
+
+<p>Things like this happens: You are checking out a project that worked by others, you opened some random foldout, and boom! It turns out 200 references fields are packed into that tiny foldout! It’s a trap! Unity start freezing every seconds because it’s trying to draw all the GUI controls every frame, and you start trying hard to click that damn foldout again so you can hide all those GUI controls to stop Unity from freezing.</p>
+
+<p>Take a tool I found on Github today as example. It’s a logcat viewer that help us read adb logcat output easily. While any program can easily accept and store thousands of log strings, the author decided that it can only show 200 items at once. And I have a simple explanation for that: It can’t, without being painful to use.</p>
+
+<h2 id="可見元件">可見元件</h2>
+
+<p>When creating editor tools we often need to display a lot of GUI controls, for example, a complex panel composed of a lot of functional components, or simply a selection panel that shows a lot of options.</p>
+
+<p>It’s important to have this in mind at the early design phase: It’s not all controls always needs to be drawn.</p>
+
+<p>In this post I’ll take a simple scrollview as example.</p>
+
+<p><img src="..\assets\2021-04-28-optimize-drawing-lots-of-control-in-unity-editor\visibility.png" alt="" /></p>
+
+<p>The above figure shows 3 types of blocks in the content block, which filled with different colors. Green means it’s a control that is fully visible, Yellow means it’s partially visible, Red means it’s totally invisble.</p>
+
+<p>Scrollview is like a window, and the actual content <em>slides</em> through the window. We can very easily predict if a control is visible if we know the size&amp;position of the scrollview rect and all the controls.</p>
+
+  </div>
+
+  <a class="u-url" href="/posts/tw/2021-04-28-optimize-drawing-lots-of-control-in-unity-editor" hidden></a>
+  <div class="related-posts">
+    
+    
+    
+  </div>
+</article>
+
+        </div>
+    </main><footer class="site-footer h-card">
+    <data class="u-url" href="/"></data>
+    <div class="wrapper">
+      <div class="footer-col-wrapper">
+        <div class="footer-col">
+          <ul class="contact-list">
+            <li class="p-name"><a class="black-link" href="https://no3371.github.io/blog//about.html">
+                  BA 
+                </a></li><li>
+              <a class="u-email black-link" href="mailto:your-email@domain.com">your-email@domain.com</a></li></ul>
+        </div>
+      </div>
+    </div>
+  </footer><div class="tags_sidebar"><a href="/tags/optimization">
+    <p>#optimization</p></a><a href="/tags/unity">
+    <p>#unity</p></a></div></body>
+</html>

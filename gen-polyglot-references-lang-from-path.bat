@@ -1,1 +1,0 @@
-ruby ./_utils/polyglot-indexing.rb --lang_from_path

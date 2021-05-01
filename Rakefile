@@ -20,8 +20,6 @@ namespace :site do
   desc "Generate the site and push changes to remote origin"
   task :deploy do
 
-    puts Dir.pwd
-    sh "ls"
     # Detect pull request
     if ENV['TRAVIS_PULL_REQUEST'].to_s.to_i > 0
       puts 'Pull request detected. Not proceeding with deploy.'
@@ -39,12 +37,24 @@ namespace :site do
 
     sh "git checkout #{SOURCE_BRANCH}"
     
+    puts ">> #{Dir.pwd}"
+    sh "ls"
+    puts ">>----------"
     unless Dir.exist? CONFIG["destination"]
       puts "Destination does not exist"
       sh "git clone https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git #{CONFIG["destination"]}"
     end
 
-    Dir.chdir(CONFIG["destination"]) { sh "git checkout #{DESTINATION_BRANCH}" }
+    Dir.chdir(CONFIG["destination"]) {
+      sh "git checkout #{DESTINATION_BRANCH}"
+      puts ">> #{Dir.pwd}"
+      sh "ls"
+      puts ">>----------"
+    }
+
+    puts ">> #{Dir.pwd}"
+    sh "ls"
+    puts ">>----------"
 
     # Generate the site
     sh "bundle exec jekyll build"

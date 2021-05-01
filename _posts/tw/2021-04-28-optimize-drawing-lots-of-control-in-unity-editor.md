@@ -4,7 +4,7 @@ title: "如何優化複雜的編輯器介面"
 tags: unity optimization
 published: true
 language: tw
-other_language_versions: en/2021-04-28-optimize-drawing-lots-of-control-in-unity-editor
+other_language_versions: en/2021-04-28-optimize-drawing-lots-of-control-in-unity-editor.md
 ---
 
 ## IMGUI 立刻繪製

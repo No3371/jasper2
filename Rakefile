@@ -40,7 +40,7 @@ namespace :site do
     sh "git checkout #{SOURCE_BRANCH}"
     
     unless Dir.exist? CONFIG["destination"]
-      puts "Destination does not exist: #{CONFIG[\"destination\"]"
+      puts "Destination does not exist"
       sh "git clone https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git #{CONFIG["destination"]}"
     end
 

@@ -1,0 +1,5 @@
+div.tags_sidebar
+  | {%- assign tags =  site.posts | where: 'published', 'true' | map: 'tags' | join: ','  | split: ',' | uniq | sort -%}
+  | {%- for tag in tags -%}
+  a(href="{{ site.baseurl }}/tags/{{ tag }}"): p \#{{ tag }}
+  | {%- endfor -%}

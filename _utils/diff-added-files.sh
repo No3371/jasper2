@@ -1,1 +1,0 @@
-git diff HEAD^ HEAD --name-only --diff-filter=A

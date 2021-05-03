@@ -16,32 +16,10 @@ SOURCE_BRANCH = CONFIG["branch"]
 DESTINATION_BRANCH = "gh-pages"
 CNAME = CONFIG["CNAME"]
 
-def check_destination
-  unless Dir.exist? CONFIG["destination"]
-    sh "git clone https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git #{CONFIG["destination"]}"
-  end
-end
-
 namespace :site do
-  desc "Generate the site"
-  task :build do
-    check_destination
-    sh "bundle exec jekyll build"
-  end
-
-  desc "Generate the site and serve locally"
-  task :serve do
-    check_destination
-    sh "bundle exec jekyll serve"
-  end
-
-  desc "Generate the site, serve locally and watch for changes"
-  task :watch do
-    sh "bundle exec jekyll serve --watch"
-  end
-
   desc "Generate the site and push changes to remote origin"
   task :deploy do
+
     # Detect pull request
     if ENV['TRAVIS_PULL_REQUEST'].to_s.to_i > 0
       puts 'Pull request detected. Not proceeding with deploy.'
@@ -55,11 +33,28 @@ namespace :site do
       sh "git config --global push.default simple"
     end
 
-    # Make sure destination folder exists as git repo
-    check_destination
+    sh "git remote -v"
 
     sh "git checkout #{SOURCE_BRANCH}"
-    Dir.chdir(CONFIG["destination"]) { sh "git checkout #{DESTINATION_BRANCH}" }
+    
+    puts ">> #{Dir.pwd}"
+    sh "ls"
+    puts ">>----------"
+    unless Dir.exist? CONFIG["destination"]
+      puts "Destination does not exist"
+      sh "git clone https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git #{CONFIG["destination"]}"
+    end
+
+    Dir.chdir(CONFIG["destination"]) {
+      sh "git checkout #{DESTINATION_BRANCH}"
+      puts ">> #{Dir.pwd}"
+      sh "ls"
+      puts ">>----------"
+    }
+
+    puts ">> #{Dir.pwd}"
+    sh "ls"
+    puts ">>----------"
 
     # Generate the site
     sh "bundle exec jekyll build"

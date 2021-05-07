@@ -48,6 +48,15 @@ layout: default
           </span> 
         {% endfor %}
       {%- endif -%}
+      &nbsp;&nbsp;Languages&nbsp;
+      {%- if page.language -%}
+          <span class="language_tag">{{ page.language | upcase }}</span>
+      {%- endif -%}
+      {%- if page.other_language_versions.size > 0 -%}
+        {%- for L in post.other_language_versions -%}
+          <span class="language_option"><a href="{% link _posts/{{ L }} %}">{{ L | split: "/" | first | upcase }}</a></span>
+        {%- endfor -%}
+      {%- endif -%}
     </p>
   </header>
 
